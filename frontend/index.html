@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="AI hamsuhbat bilan ingliz tilida gapirib o'rganing. Grammatika, iboralar, shadowing va rol suhbatlar — o'zbek va rus tillarida."
+    />
+    <meta name="theme-color" content="#e9eeec" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#101817" media="(prefers-color-scheme: dark)" />
+    <title>Speaking — gapirib o'rganish</title>
+
+    <!-- Nishonlar. Tartib muhim: brauzer o'zi o'qiy oladigan ENG OXIRGISINI
+         oladi, shuning uchun eski ICO birinchi, SVG keyin turadi. Hammasi
+         public/favicon.svg dan `npm run icons` bilan yasaladi — qo'lda
+         tahrirlanmaydi. -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="apple-mobile-web-app-title" content="Speaking" />
+    <script>
+      // Mavzu va til React yuklanishidan OLDIN qo'yiladi: aks holda sahifa
+      // chaqnaydi va ekran o'quvchisi noto'g'ri tilni e'lon qiladi.
+      try {
+        var saved = localStorage.getItem('speaking.theme')
+        var dark =
+          saved === 'dark' ||
+          (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light'
+
+        var lang = localStorage.getItem('speaking.lang')
+        if (lang !== 'uz' && lang !== 'ru') {
+          lang = (navigator.language || '').slice(0, 2).toLowerCase() === 'ru' ? 'ru' : 'uz'
+        }
+        document.documentElement.lang = lang
+      } catch (e) {
+        document.documentElement.dataset.theme = 'light'
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

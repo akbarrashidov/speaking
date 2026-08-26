@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "aiwork": {
+      "type": "http",
+      "url": "https://work.ai-energy.team/mcp",
+      "headers": {
+        "Authorization": "Bearer ss1LWa0dRxzJQFKFTPHe5KuRLMGnFmFHhguwScDJuyY",
+        "X-Aiwork-Project": "speaking"
+      }
+    }
+  }
+}

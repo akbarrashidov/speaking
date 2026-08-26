@@ -1,0 +1,646 @@
+{
+  "topics": [
+    {
+      "track": "shadowing",
+      "order": 1,
+      "target_structure": "shadow_small_talk",
+      "session_mode": "shadowing",
+      "related_structures": ["present_simple_questions", "phrase_to_be_honest"],
+      "title_uz": "Kundalik salomlashuv va qisqa suhbat",
+      "title_ru": "Приветствие и короткий разговор",
+      "title_en": "Everyday small talk",
+      "status": "published",
+      "max_questions": 8,
+      "material": {
+        "rule_uz": "AI gapni tabiiy tezlikda bir marta aytadi — siz darhol xuddi shu so'zlar bilan takrorlaysiz. Tarjima qilmang, o'ylab turmang: ohang va sur'atni ushlash muhim.",
+        "rule_ru": "ИИ произносит фразу один раз в естественном темпе — вы сразу повторяете теми же словами. Не переводите и не раздумывайте: главное — поймать интонацию и темп.",
+        "usage_uz": "Bu matnda diqqat qisqartmalarda: \"How's it going\" va \"I'm good\" bitta so'zdek eshitiladi. Aynan shu qo'shilib ketish tabiiy nutqni yasaydi — har so'zni alohida aytsangiz, gap to'g'ri bo'ladi-yu, begona eshitiladi.",
+        "usage_ru": "Здесь внимание на сокращениях: «How's it going» и «I'm good» звучат как одно слово. Именно это слияние и делает речь естественной — если произносить каждое слово отдельно, фраза будет верной, но чужой.",
+        "examples": [
+          {
+            "en": "Hey, how's it going?",
+            "uz": "Salom, ishlar qalay?",
+            "ru": "Привет, как дела?"
+          },
+          {
+            "en": "I'm good, thanks. What about you?",
+            "uz": "Yaxshi, rahmat. O'zingiz-chi?",
+            "ru": "Хорошо, спасибо. А вы?"
+          },
+          {
+            "en": "Busy week, to be honest.",
+            "uz": "Rostini aytsam, hafta band bo'ldi.",
+            "ru": "Честно говоря, неделя была загруженная."
+          },
+          {
+            "en": "Yeah, same here. See you tomorrow.",
+            "uz": "Ha, menda ham shunday. Ertaga ko'rishguncha.",
+            "ru": "Да, у меня так же. До завтра."
+          }
+        ]
+      },
+      "chunks": [
+        {
+          "text": "how's it going",
+          "translation_uz": "ishlar qalay",
+          "translation_ru": "как дела"
+        },
+        {
+          "text": "same here",
+          "translation_uz": "menda ham shunday",
+          "translation_ru": "у меня так же"
+        },
+        {
+          "text": "catch you later",
+          "translation_uz": "keyinroq ko'rishamiz",
+          "translation_ru": "до скорого"
+        }
+      ],
+      "questions": [
+        {
+          "question_text": "Say this back to me: Hey, how's it going?",
+          "canonical_answer": "Hey, how's it going?",
+          "answer_variants": [],
+          "elicitation_note": "Qisqartma how's — bitta bo'g'in kabi."
+        },
+        {
+          "question_text": "Say this back to me: I'm good, thanks. What about you?",
+          "canonical_answer": "I'm good, thanks. What about you?",
+          "answer_variants": [],
+          "elicitation_note": "I'm — I am emas."
+        },
+        {
+          "question_text": "Say this back to me: Busy week, to be honest.",
+          "canonical_answer": "Busy week, to be honest.",
+          "answer_variants": [],
+          "elicitation_note": "Ibora gap oxirida, pauzasiz."
+        },
+        {
+          "question_text": "Say this back to me: Long time no see!",
+          "canonical_answer": "Long time no see!",
+          "answer_variants": [],
+          "elicitation_note": "Tayyor ibora, so'zma-so'z."
+        },
+        {
+          "question_text": "Say this back to me: How was your weekend?",
+          "canonical_answer": "How was your weekend?",
+          "answer_variants": [],
+          "elicitation_note": "Ohang oxirida pasayadi."
+        },
+        {
+          "question_text": "Say this back to me: Not bad, just a bit tired.",
+          "canonical_answer": "Not bad, just a bit tired.",
+          "answer_variants": [],
+          "elicitation_note": "just a bit — birga aytiladi."
+        },
+        {
+          "question_text": "Say this back to me: Yeah, same here. See you tomorrow.",
+          "canonical_answer": "Yeah, same here. See you tomorrow.",
+          "answer_variants": [],
+          "elicitation_note": "Ikki qisqa gap, o'rtasida pauza."
+        },
+        {
+          "question_text": "Say this back to me: Sorry, I have to run. Catch you later!",
+          "canonical_answer": "Sorry, I have to run. Catch you later!",
+          "answer_variants": [],
+          "elicitation_note": "have to — hafta aytiladi."
+        }
+      ]
+    },
+    {
+      "track": "shadowing",
+      "order": 2,
+      "target_structure": "shadow_polite_request",
+      "session_mode": "shadowing",
+      "related_structures": ["modal_requests_can_could", "phrase_it_depends_on"],
+      "title_uz": "Xushmuomala iltimos va so'rov",
+      "title_ru": "Вежливая просьба и вопрос",
+      "title_en": "Polite requests",
+      "status": "published",
+      "max_questions": 8,
+      "material": {
+        "rule_uz": "Gapni eshitib, darhol o'sha so'zlar bilan takrorlaysiz. Bu matnda ohang muhim: xushmuomalalik so'zlarda emas, ovoz oxirida ko'tarilishida.",
+        "rule_ru": "Слушаете фразу и сразу повторяете теми же словами. Здесь важна интонация: вежливость создаётся не словами, а подъёмом голоса в конце.",
+        "usage_uz": "\"Could you\" va \"Do you know\" boshlanishlari tez va past ovozda aytiladi, asosiy kuch esa gapning ikkinchi yarmiga tushadi. Shuni takrorlab olsangiz, iltimosingiz talabga o'xshab qolmaydi.",
+        "usage_ru": "Начала «Could you» и «Do you know» произносятся быстро и тихо, а основной акцент падает на вторую половину фразы. Повторив это, ваша просьба не будет звучать как требование.",
+        "examples": [
+          {
+            "en": "Could you help me for a second?",
+            "uz": "Bir daqiqa yordam bera olasizmi?",
+            "ru": "Не могли бы вы помочь мне на минуту?"
+          },
+          {
+            "en": "Do you know where the station is?",
+            "uz": "Bekat qayerdaligini bilasizmi?",
+            "ru": "Вы знаете, где вокзал?"
+          },
+          {
+            "en": "Sorry, could you say that again?",
+            "uz": "Kechirasiz, takrorlab bera olasizmi?",
+            "ru": "Извините, можете повторить?"
+          },
+          {
+            "en": "It depends on the time, actually.",
+            "uz": "Aslida vaqtga bog'liq.",
+            "ru": "Вообще-то это зависит от времени."
+          }
+        ]
+      },
+      "chunks": [
+        {
+          "text": "would you mind",
+          "translation_uz": "qarshi bo'lmasangiz",
+          "translation_ru": "вы не против"
+        },
+        {
+          "text": "for a second",
+          "translation_uz": "bir daqiqaga",
+          "translation_ru": "на секунду"
+        },
+        {
+          "text": "if that's okay",
+          "translation_uz": "agar mumkin bo'lsa",
+          "translation_ru": "если это нормально"
+        }
+      ],
+      "questions": [
+        {
+          "question_text": "Say this back to me: Could you help me for a second?",
+          "canonical_answer": "Could you help me for a second?",
+          "answer_variants": [],
+          "elicitation_note": "Could you — tez va past."
+        },
+        {
+          "question_text": "Say this back to me: Do you know where the station is?",
+          "canonical_answer": "Do you know where the station is?",
+          "answer_variants": [],
+          "elicitation_note": "Oxiri: where the station is."
+        },
+        {
+          "question_text": "Say this back to me: Sorry, could you say that again?",
+          "canonical_answer": "Sorry, could you say that again?",
+          "answer_variants": [],
+          "elicitation_note": "Sorry dan keyin kichik pauza."
+        },
+        {
+          "question_text": "Say this back to me: Would you mind opening the window?",
+          "canonical_answer": "Would you mind opening the window?",
+          "answer_variants": [],
+          "elicitation_note": "mind + -ing."
+        },
+        {
+          "question_text": "Say this back to me: Could I ask you something?",
+          "canonical_answer": "Could I ask you something?",
+          "answer_variants": [],
+          "elicitation_note": "Could I — ruxsat."
+        },
+        {
+          "question_text": "Say this back to me: It depends on the time, actually.",
+          "canonical_answer": "It depends on the time, actually.",
+          "answer_variants": [],
+          "elicitation_note": "actually — oxirida, pastroq ohangda."
+        },
+        {
+          "question_text": "Say this back to me: I'd appreciate it, if that's okay.",
+          "canonical_answer": "I'd appreciate it, if that's okay.",
+          "answer_variants": [],
+          "elicitation_note": "I'd — qisqartma."
+        },
+        {
+          "question_text": "Say this back to me: Thanks a lot, that's really kind of you.",
+          "canonical_answer": "Thanks a lot, that's really kind of you.",
+          "answer_variants": [],
+          "elicitation_note": "kind of you — qo'shilib ketadi."
+        }
+      ]
+    },
+    {
+      "track": "shadowing",
+      "order": 3,
+      "target_structure": "shadow_weekend_plans",
+      "session_mode": "shadowing",
+      "related_structures": ["going_to_future_plans", "phrase_look_forward_to"],
+      "title_uz": "Rejalar haqida gapirish",
+      "title_ru": "Разговор о планах",
+      "title_en": "Talking about plans",
+      "status": "published",
+      "max_questions": 8,
+      "material": {
+        "rule_uz": "Har gapni bir marta eshitib, darhol takrorlaysiz. Diqqat: \"going to\" tez nutqda \"gonna\" bo'lib eshitiladi — siz esa yozilganini takrorlaysiz.",
+        "rule_ru": "Каждую фразу слушаете один раз и сразу повторяете. Внимание: «going to» в быстрой речи звучит как «gonna» — вы повторяете то, что написано.",
+        "usage_uz": "Reja haqidagi gaplarda kuch fe'lga emas, REJANING o'ziga tushadi: \"I'm going to VISIT my parents\". Shuni to'g'ri joylasangiz, gap ishonchli chiqadi.",
+        "usage_ru": "В фразах о планах акцент падает не на глагол-помощник, а на сам ПЛАН: «I'm going to VISIT my parents». Если поставить акцент верно, фраза звучит уверенно.",
+        "examples": [
+          {
+            "en": "I'm going to visit my parents this weekend.",
+            "uz": "Bu dam olish kunlari ota-onamga boraman.",
+            "ru": "На этих выходных я поеду к родителям."
+          },
+          {
+            "en": "We're going to leave early in the morning.",
+            "uz": "Ertalab erta chiqamiz.",
+            "ru": "Мы уедем рано утром."
+          },
+          {
+            "en": "I'm looking forward to seeing everyone.",
+            "uz": "Hammani ko'rishni intiq kutyapman.",
+            "ru": "С нетерпением жду встречи со всеми."
+          },
+          {
+            "en": "Nothing special, just resting at home.",
+            "uz": "Hech nima, shunchaki uyda dam olaman.",
+            "ru": "Ничего особенного, просто отдыхаю дома."
+          }
+        ]
+      },
+      "chunks": [
+        {
+          "text": "I can't wait",
+          "translation_uz": "kutishga chidayolmayman",
+          "translation_ru": "не могу дождаться"
+        },
+        {
+          "text": "nothing special",
+          "translation_uz": "hech qanday maxsus narsa yo'q",
+          "translation_ru": "ничего особенного"
+        },
+        {
+          "text": "first thing in the morning",
+          "translation_uz": "ertalab birinchi ish",
+          "translation_ru": "с самого утра"
+        }
+      ],
+      "questions": [
+        {
+          "question_text": "Say this back to me: I'm going to visit my parents this weekend.",
+          "canonical_answer": "I'm going to visit my parents this weekend.",
+          "answer_variants": [],
+          "elicitation_note": "Kuch VISIT so'ziga."
+        },
+        {
+          "question_text": "Say this back to me: We're going to leave early in the morning.",
+          "canonical_answer": "We're going to leave early in the morning.",
+          "answer_variants": [],
+          "elicitation_note": "We're — qisqartma."
+        },
+        {
+          "question_text": "Say this back to me: I'm looking forward to seeing everyone.",
+          "canonical_answer": "I'm looking forward to seeing everyone.",
+          "answer_variants": [],
+          "elicitation_note": "to seeing — -ing shakli."
+        },
+        {
+          "question_text": "Say this back to me: What are you up to on Saturday?",
+          "canonical_answer": "What are you up to on Saturday?",
+          "answer_variants": [],
+          "elicitation_note": "up to — qo'shilib ketadi."
+        },
+        {
+          "question_text": "Say this back to me: Nothing special, just resting at home.",
+          "canonical_answer": "Nothing special, just resting at home.",
+          "answer_variants": [],
+          "elicitation_note": "Ikki qism, o'rtasida pauza."
+        },
+        {
+          "question_text": "Say this back to me: I can't wait for the holidays.",
+          "canonical_answer": "I can't wait for the holidays.",
+          "answer_variants": [],
+          "elicitation_note": "can't — qisqa va kuchli."
+        },
+        {
+          "question_text": "Say this back to me: We'll probably book the tickets tonight.",
+          "canonical_answer": "We'll probably book the tickets tonight.",
+          "answer_variants": [],
+          "elicitation_note": "We'll — bitta bo'g'in."
+        },
+        {
+          "question_text": "Say this back to me: I'll call you first thing in the morning.",
+          "canonical_answer": "I'll call you first thing in the morning.",
+          "answer_variants": [],
+          "elicitation_note": "I'll — qisqartma, tez."
+        }
+      ]
+    },
+    {
+      "track": "shadowing",
+      "order": 4,
+      "target_structure": "shadow_running_late",
+      "session_mode": "shadowing",
+      "related_structures": ["will_decisions_predictions", "phrase_be_about_to"],
+      "title_uz": "Kechikayotganda — telefonda",
+      "title_ru": "Когда опаздываешь — по телефону",
+      "title_en": "Running late on the phone",
+      "status": "published",
+      "max_questions": 8,
+      "material": {
+        "rule_uz": "Gaplar telefondagidek qisqa va tez. Bir marta eshitib, o'sha tezlikda takrorlaysiz — sekinlashtirsangiz mashqning ma'nosi yo'qoladi.",
+        "rule_ru": "Фразы короткие и быстрые, как по телефону. Слушаете один раз и повторяете в том же темпе — если замедлить, смысл упражнения теряется.",
+        "usage_uz": "Telefonda birinchi so'z eng baland aytiladi, keyin ovoz pasayadi: \"SORRY, I'm running late.\" Sabab esa bir tekis va tez o'tib ketadi. Shu naqsh o'zbek tilidagidan boshqacha.",
+        "usage_ru": "По телефону первое слово произносится громче, дальше голос падает: «SORRY, I'm running late». А причина проговаривается ровно и быстро. Этот рисунок отличается от русского.",
+        "examples": [
+          {
+            "en": "Sorry, I'm running late.",
+            "uz": "Kechirasiz, kechikyapman.",
+            "ru": "Извините, я опаздываю."
+          },
+          {
+            "en": "I'm about to leave the house now.",
+            "uz": "Hozir uydan chiqaman.",
+            "ru": "Я как раз выхожу из дома."
+          },
+          {
+            "en": "I'll be there in ten minutes.",
+            "uz": "O'n daqiqada yetib boraman.",
+            "ru": "Буду там через десять минут."
+          },
+          {
+            "en": "Go ahead and start without me.",
+            "uz": "Meni kutmasdan boshlab turing.",
+            "ru": "Начинайте без меня."
+          }
+        ]
+      },
+      "chunks": [
+        {
+          "text": "I'm on my way",
+          "translation_uz": "yo'ldaman",
+          "translation_ru": "я уже в пути"
+        },
+        {
+          "text": "stuck in traffic",
+          "translation_uz": "tirbandlikda qoldim",
+          "translation_ru": "застрял в пробке"
+        },
+        {
+          "text": "go ahead and start",
+          "translation_uz": "boshlab turing",
+          "translation_ru": "начинайте"
+        }
+      ],
+      "questions": [
+        {
+          "question_text": "Say this back to me: Sorry, I'm running late.",
+          "canonical_answer": "Sorry, I'm running late.",
+          "answer_variants": [],
+          "elicitation_note": "SORRY balandda, qolgani pastda."
+        },
+        {
+          "question_text": "Say this back to me: I'm about to leave the house now.",
+          "canonical_answer": "I'm about to leave the house now.",
+          "answer_variants": [],
+          "elicitation_note": "about to — bitta bo'lak."
+        },
+        {
+          "question_text": "Say this back to me: I'm stuck in traffic, sorry.",
+          "canonical_answer": "I'm stuck in traffic, sorry.",
+          "answer_variants": [],
+          "elicitation_note": "stuck in — qo'shilib ketadi."
+        },
+        {
+          "question_text": "Say this back to me: I'll be there in ten minutes.",
+          "canonical_answer": "I'll be there in ten minutes.",
+          "answer_variants": [],
+          "elicitation_note": "I'll be — tez."
+        },
+        {
+          "question_text": "Say this back to me: Go ahead and start without me.",
+          "canonical_answer": "Go ahead and start without me.",
+          "answer_variants": [],
+          "elicitation_note": "Buyruq ohangi, tekis."
+        },
+        {
+          "question_text": "Say this back to me: I'm on my way, don't worry.",
+          "canonical_answer": "I'm on my way, don't worry.",
+          "answer_variants": [],
+          "elicitation_note": "on my way — bitta bo'lak."
+        },
+        {
+          "question_text": "Say this back to me: Can we move it to four o'clock?",
+          "canonical_answer": "Can we move it to four o'clock?",
+          "answer_variants": [],
+          "elicitation_note": "Oxirida ohang ko'tariladi."
+        },
+        {
+          "question_text": "Say this back to me: Thanks for waiting, I really appreciate it.",
+          "canonical_answer": "Thanks for waiting, I really appreciate it.",
+          "answer_variants": [],
+          "elicitation_note": "appreciate it — birga."
+        }
+      ]
+    },
+    {
+      "track": "shadowing",
+      "order": 5,
+      "target_structure": "shadow_giving_advice",
+      "session_mode": "shadowing",
+      "related_structures": ["modal_advice_should", "phrase_had_better"],
+      "title_uz": "Maslahat berish",
+      "title_ru": "Как дать совет",
+      "title_en": "Giving advice",
+      "status": "published",
+      "max_questions": 8,
+      "material": {
+        "rule_uz": "Gapni eshitib darhol takrorlaysiz. Bu matnda ohang yumshoq bo'lishi kerak — o'sha so'zlar qattiq aytilsa, maslahat buyruqqa aylanadi.",
+        "rule_ru": "Слушаете фразу и сразу повторяете. Здесь интонация должна быть мягкой — те же слова, сказанные жёстко, превращают совет в приказ.",
+        "usage_uz": "\"You should\" va \"You'd better\" boshlanishlari past va tez, kuch esa fe'lga tushadi: \"You'd better GO now.\" \"I think\" qo'shilsa, maslahat yana yumshaydi — takrorlaganda shu yumshoqlikni ham oling.",
+        "usage_ru": "Начала «You should» и «You'd better» звучат тихо и быстро, акцент падает на глагол: «You'd better GO now». Добавленное «I think» делает совет ещё мягче — при повторении перенимайте и эту мягкость.",
+        "examples": [
+          {
+            "en": "I think you should talk to her.",
+            "uz": "Menimcha, u bilan gaplashishingiz kerak.",
+            "ru": "Думаю, вам стоит с ней поговорить."
+          },
+          {
+            "en": "You'd better take an umbrella.",
+            "uz": "Soyabon olsangiz yaxshi bo'ladi.",
+            "ru": "Вам лучше взять зонт."
+          },
+          {
+            "en": "If I were you, I'd wait a day.",
+            "uz": "Sizning o'rningizda bo'lsam, bir kun kutardim.",
+            "ru": "На вашем месте я бы подождал день."
+          },
+          {
+            "en": "It might be worth asking him first.",
+            "uz": "Avval undan so'rasa arziydi.",
+            "ru": "Возможно, стоит сначала спросить у него."
+          }
+        ]
+      },
+      "chunks": [
+        {
+          "text": "if I were you",
+          "translation_uz": "sizning o'rningizda bo'lsam",
+          "translation_ru": "на вашем месте"
+        },
+        {
+          "text": "it might be worth",
+          "translation_uz": "arzishi mumkin",
+          "translation_ru": "возможно, стоит"
+        },
+        {
+          "text": "why don't you",
+          "translation_uz": "nega ...qilmaysiz",
+          "translation_ru": "почему бы вам не"
+        }
+      ],
+      "questions": [
+        {
+          "question_text": "Say this back to me: I think you should talk to her.",
+          "canonical_answer": "I think you should talk to her.",
+          "answer_variants": [],
+          "elicitation_note": "I think — tez va past."
+        },
+        {
+          "question_text": "Say this back to me: You'd better take an umbrella.",
+          "canonical_answer": "You'd better take an umbrella.",
+          "answer_variants": [],
+          "elicitation_note": "You'd — bitta bo'g'in."
+        },
+        {
+          "question_text": "Say this back to me: If I were you, I'd wait a day.",
+          "canonical_answer": "If I were you, I'd wait a day.",
+          "answer_variants": [],
+          "elicitation_note": "Ikki qism, o'rtada pauza."
+        },
+        {
+          "question_text": "Say this back to me: Why don't you call them tomorrow?",
+          "canonical_answer": "Why don't you call them tomorrow?",
+          "answer_variants": [],
+          "elicitation_note": "Why don't you — tez boshlanish."
+        },
+        {
+          "question_text": "Say this back to me: It might be worth asking him first.",
+          "canonical_answer": "It might be worth asking him first.",
+          "answer_variants": [],
+          "elicitation_note": "worth asking — birga."
+        },
+        {
+          "question_text": "Say this back to me: You shouldn't worry too much about it.",
+          "canonical_answer": "You shouldn't worry too much about it.",
+          "answer_variants": [],
+          "elicitation_note": "shouldn't — qisqa."
+        },
+        {
+          "question_text": "Say this back to me: Take your time, there's no hurry.",
+          "canonical_answer": "Take your time, there's no hurry.",
+          "answer_variants": [],
+          "elicitation_note": "there's — qisqartma."
+        },
+        {
+          "question_text": "Say this back to me: That's up to you, of course.",
+          "canonical_answer": "That's up to you, of course.",
+          "answer_variants": [],
+          "elicitation_note": "up to you — bitta bo'lak."
+        }
+      ]
+    },
+    {
+      "track": "shadowing",
+      "order": 6,
+      "target_structure": "shadow_making_choices",
+      "session_mode": "shadowing",
+      "related_structures": ["would_like_offers", "phrase_would_rather"],
+      "title_uz": "Tanlov va afzallik",
+      "title_ru": "Выбор и предпочтение",
+      "title_en": "Choices and preferences",
+      "status": "published",
+      "max_questions": 8,
+      "material": {
+        "rule_uz": "Gapni bir marta eshitib takrorlaysiz. Bu matnda \"I'd\" tovushi qiyin: u \"ay-d\" bo'lib qisqa chiqadi, \"I would\" deb cho'zilmaydi.",
+        "rule_ru": "Слушаете фразу один раз и повторяете. Здесь сложный звук «I'd»: он произносится коротко, а не растягивается как «I would».",
+        "usage_uz": "Tanlov gaplarida ikkita kuchli nuqta bor: nimani afzal ko'rasiz va nimadan ko'ra. \"I'd rather WALK than WAIT.\" Shu ikki so'zni ajratib aytsangiz, ma'no o'z-o'zidan tushunarli bo'ladi.",
+        "usage_ru": "В фразах о выборе два ударных места: что предпочитаете и вместо чего. «I'd rather WALK than WAIT». Если выделить эти два слова, смысл становится ясным сам собой.",
+        "examples": [
+          {
+            "en": "I'd rather stay at home tonight.",
+            "uz": "Bugun kechqurun uyda qolsam yaxshi.",
+            "ru": "Сегодня вечером я лучше останусь дома."
+          },
+          {
+            "en": "I'd rather walk than wait for the bus.",
+            "uz": "Avtobus kutgandan piyoda ketaman.",
+            "ru": "Я лучше пойду пешком, чем буду ждать автобус."
+          },
+          {
+            "en": "I'd like a cup of tea, please.",
+            "uz": "Bir piyola choy bersangiz.",
+            "ru": "Мне, пожалуйста, чашку чая."
+          },
+          {
+            "en": "Either is fine with me.",
+            "uz": "Menga ikkalasi ham to'g'ri keladi.",
+            "ru": "Мне подходит любой вариант."
+          }
+        ]
+      },
+      "chunks": [
+        {
+          "text": "either is fine",
+          "translation_uz": "ikkalasi ham to'g'ri keladi",
+          "translation_ru": "любой подойдёт"
+        },
+        {
+          "text": "up to you",
+          "translation_uz": "o'zingiz bilasiz",
+          "translation_ru": "как решите"
+        },
+        {
+          "text": "I'd rather not",
+          "translation_uz": "yo'q desam devdim",
+          "translation_ru": "лучше не буду"
+        }
+      ],
+      "questions": [
+        {
+          "question_text": "Say this back to me: I'd rather stay at home tonight.",
+          "canonical_answer": "I'd rather stay at home tonight.",
+          "answer_variants": [],
+          "elicitation_note": "I'd — qisqa, cho'zilmaydi."
+        },
+        {
+          "question_text": "Say this back to me: I'd rather walk than wait for the bus.",
+          "canonical_answer": "I'd rather walk than wait for the bus.",
+          "answer_variants": [],
+          "elicitation_note": "WALK va WAIT — ikki kuchli nuqta."
+        },
+        {
+          "question_text": "Say this back to me: I'd like a cup of tea, please.",
+          "canonical_answer": "I'd like a cup of tea, please.",
+          "answer_variants": [],
+          "elicitation_note": "a cup of — birga."
+        },
+        {
+          "question_text": "Say this back to me: Either is fine with me.",
+          "canonical_answer": "Either is fine with me.",
+          "answer_variants": [],
+          "elicitation_note": "Tekis ohang."
+        },
+        {
+          "question_text": "Say this back to me: I'd rather not talk about it.",
+          "canonical_answer": "I'd rather not talk about it.",
+          "answer_variants": [],
+          "elicitation_note": "rather not — birga."
+        },
+        {
+          "question_text": "Say this back to me: It's up to you, honestly.",
+          "canonical_answer": "It's up to you, honestly.",
+          "answer_variants": [],
+          "elicitation_note": "up to you — bitta bo'lak."
+        },
+        {
+          "question_text": "Say this back to me: Would you like tea or coffee?",
+          "canonical_answer": "Would you like tea or coffee?",
+          "answer_variants": [],
+          "elicitation_note": "Tanlov ohangi: ko'tarilib, pasayadi."
+        },
+        {
+          "question_text": "Say this back to me: I think I'll take the second one.",
+          "canonical_answer": "I think I'll take the second one.",
+          "answer_variants": [],
+          "elicitation_note": "I'll — qisqartma."
+        }
+      ]
+    }
+  ]
+}

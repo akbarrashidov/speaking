@@ -1,0 +1,2982 @@
+/* =========================================================================
+   Speaking — dizayn tizimi 3.0
+
+   Auditoriya ikki uchli: 10 yoshli o'quvchi ham, 40 yoshli mutaxassis ham.
+   Shuning uchun registr — JIDDIY, lekin quruq emas. Amaliy qoidalar:
+
+     • Shakl emas, MA'LUMOT ko'rinadi. Rasm faqat ma'no tashiganda qo'yiladi
+       va u ingichka chiziqli emblema bo'ladi — multfilm sahna emas.
+     • Rang ma'noni belgilaydi: har mashq rejimining o'z rangi bor, holat
+       ranglari (to'g'ri / xato / yopiq) hech qachon bezak uchun ishlatilmaydi.
+     • Burchak radiusi kichik (8-16px), soya yumshoq va past. Katta radius va
+       "sakraydigan" animatsiya ilovani o'yinchoqqa aylantiradi.
+     • Naqsh bor, lekin ovozi past: girih chizig'i ~9% shaffoflikda — sezilar,
+       lekin e'tiborni tortmaydi.
+
+   Rang: BITTA hukmron ohang — darslik ko'ki. Sariq (`--marker`) faqat HOLAT
+   uchun qoladi: sekin/tez o'qilgan gap, ishlash kerak bo'lgan karta. Ilgari u
+   inglizcha gap ostiga marker tasmasi bo'lib ham tortilardi — endi tortilmaydi
+   (§ingliz tili qatlami).
+
+   Ilova nimani o'rgatishi EKRANDAN ko'rinishi kerak: shuning uchun inglizcha
+   gap har bo'limda birinchi o'rinda turadi, tarjima esa ostida, kichikroq.
+
+   Shrift: Manrope (sarlavha, raqam, boshqaruv) + IBM Plex Sans (matn). Ikkalasi
+   ham kirillni to'liq qoplaydi.
+   ========================================================================= */
+
+@import '@fontsource-variable/manrope';
+@import '@fontsource-variable/ibm-plex-sans';
+
+:root {
+  color-scheme: light;
+
+  /* Sirtlar — deyarli oq. Fon rangini gradient "gullar" beradi (§backdrop). */
+  --bg: #fbfbfe;
+  --surface: #ffffff;
+  --surface-2: #f6f7fc;
+  --surface-3: #edeff8;
+  --line: #e7e9f3;
+  --line-strong: #d6dae9;
+
+  --ink: #1b1d26;
+  --ink-2: #454a5c;
+  --ink-dim: #787e92;
+
+  /* Asosiy — yorug' va ishonchli ko'k. */
+  --primary: #4361ee;
+  --primary-deep: #2f49c9;
+  --primary-mid: #7d94f5;
+  --primary-soft: #eef1fe;
+  --primary-line: #d5ddfd;
+
+  /* Yordamchi ohanglar — gradientlar va rejim ranglari uchun. */
+  --violet: #7c5cf0;
+  --violet-soft: #f2eeff;
+  --pink: #e2618c;
+  --pink-soft: #fdeef4;
+  --teal: #17a2a2;
+  --teal-soft: #e6f7f7;
+
+  /* Marker — o'rganilayotgan gapni belgilaydi. */
+  --marker: #ffcf3d;
+  --marker-soft: #fff6dc;
+  --marker-ink: #8a6a10;
+
+  --green: #23a06b;
+  --green-soft: #e7f6ef;
+  --red: #e0565c;
+  --red-soft: #fdedee;
+
+  --on-dark: #ffffff;
+  --on-primary: #ffffff;
+  --on-brand: var(--ink);
+
+  /* Brend sirti endi OCH: oq ustidagi yumshoq uch rangli gradient. */
+  --brand-surface: linear-gradient(
+    135deg,
+    #eef1fe 0%,
+    #f4eefe 42%,
+    #fdeef4 74%,
+    #fff8e8 100%
+  );
+
+  --font-display: 'Manrope Variable', system-ui, -apple-system, sans-serif;
+  --font-body: 'IBM Plex Sans Variable', system-ui, -apple-system, sans-serif;
+
+  --r-sm: 10px;
+  --r: 14px;
+  --r-lg: 20px;
+  --rail: 258px;
+  --page: 1160px;
+
+  --sh-sm: 0 1px 2px rgba(27, 29, 38, 0.04);
+  --sh: 0 1px 3px rgba(27, 29, 38, 0.05), 0 10px 28px -18px rgba(67, 97, 238, 0.35);
+  --sh-lift: 0 2px 6px rgba(27, 29, 38, 0.07), 0 18px 38px -22px rgba(67, 97, 238, 0.45);
+
+  --ornament: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%234361ee' stroke-opacity='0.07' stroke-width='1'%3E%3Cpath d='M10 10h44v44H10z'/%3E%3Cpath d='M32 4l28 28-28 28L4 32z'/%3E%3C/g%3E%3C/svg%3E");
+
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #0f1117;
+  --surface: #171a22;
+  --surface-2: #1d2029;
+  --surface-3: #242833;
+  --line: #282c38;
+  --line-strong: #39404f;
+
+  --ink: #edeef2;
+  --ink-2: #b7bcc9;
+  --ink-dim: #858b9c;
+
+  --primary: #7f97f7;
+  --primary-deep: #a3b4fa;
+  --primary-mid: #5a72d8;
+  --primary-soft: #1b2136;
+  --primary-line: #2d3654;
+
+  --violet: #a58bff;
+  --violet-soft: #241f3d;
+  --pink: #f08bad;
+  --pink-soft: #33202a;
+  --teal: #3fc4c4;
+  --teal-soft: #122e2e;
+
+  --marker: #ffd45c;
+  --marker-soft: #33290d;
+  --marker-ink: #ffd45c;
+
+  --green: #45c48a;
+  --green-soft: #12291f;
+  --red: #f0787e;
+  --red-soft: #33191b;
+
+  --on-dark: #ffffff;
+  --on-primary: #0f1117;
+  --on-brand: var(--ink);
+
+  --brand-surface: linear-gradient(
+    135deg,
+    #1a2038 0%,
+    #221d3a 42%,
+    #2e1f2c 74%,
+    #2c2618 100%
+  );
+
+  --sh-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --sh: 0 1px 3px rgba(0, 0, 0, 0.5), 0 10px 28px -18px rgba(0, 0, 0, 0.8);
+  --sh-lift: 0 2px 6px rgba(0, 0, 0, 0.5), 0 18px 38px -22px rgba(0, 0, 0, 0.9);
+
+  --ornament: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%237f97f7' stroke-opacity='0.08' stroke-width='1'%3E%3Cpath d='M10 10h44v44H10z'/%3E%3Cpath d='M32 4l28 28-28 28L4 32z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* --- ambient fon: yumshoq rangli "gullar" ------------------------------
+   Gemini Live'dagi kabi: sahifa orqasida sekin suzuvchi, kuchli xiralashgan
+   rangli dog'lar. Ular kontentga tegmaydi (pointer-events yo'q) va mazmun
+   ustiga chiqmaydi — faqat oq fonni tirik qiladi.
+   ------------------------------------------------------------------------- */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.backdrop__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.32;
+  will-change: transform;
+}
+
+:root[data-theme='dark'] .backdrop__blob {
+  opacity: 0.28;
+}
+
+@keyframes drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, 6%, 0) scale(1.12);
+  }
+}
+
+@keyframes drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(-5%, -4%, 0) scale(0.95);
+  }
+}
+
+.backdrop__blob--1 {
+  top: -14vh;
+  right: -6vw;
+  width: 46vw;
+  height: 46vw;
+  background: radial-gradient(circle, #4361ee 0%, transparent 68%);
+  animation: drift-a 26s ease-in-out infinite;
+}
+
+.backdrop__blob--2 {
+  top: 18vh;
+  left: -12vw;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, #7c5cf0 0%, transparent 68%);
+  animation: drift-b 32s ease-in-out infinite;
+}
+
+.backdrop__blob--3 {
+  bottom: -18vh;
+  left: 22vw;
+  width: 44vw;
+  height: 44vw;
+  background: radial-gradient(circle, #e2618c 0%, transparent 70%);
+  animation: drift-a 38s ease-in-out infinite reverse;
+}
+
+.backdrop__blob--4 {
+  bottom: 6vh;
+  right: 4vw;
+  width: 30vw;
+  height: 30vw;
+  background: radial-gradient(circle, #17a2a2 0%, transparent 70%);
+  animation: drift-b 30s ease-in-out infinite;
+}
+
+/* --- asos ---------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--ink);
+}
+
+h1 {
+  font-size: clamp(26px, 2.6vw, 34px);
+}
+
+h2 {
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: 15.5px;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--primary-soft);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.muted {
+  color: var(--ink-dim);
+}
+
+.num {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* --- harakat: faqat kirish, sakrash yo'q ---------------------------------- */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.36s var(--ease) both;
+}
+
+.rise-1 {
+  animation-delay: 0.04s;
+}
+.rise-2 {
+  animation-delay: 0.08s;
+}
+.rise-3 {
+  animation-delay: 0.12s;
+}
+.rise-4 {
+  animation-delay: 0.16s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* --- qobiq --------------------------------------------------------------- */
+
+.app {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  min-height: 100%;
+}
+
+.app--bare {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.rail {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 22px 14px 16px;
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+}
+
+.rail__mark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px 4px;
+  text-decoration: none;
+}
+
+.rail__wordmark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: -0.03em;
+}
+
+.rail__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rail__foot {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.page {
+  width: 100%;
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 34px 36px 80px;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.center {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+}
+
+/* --- panel havolasi ------------------------------------------------------ */
+
+.navitem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: none;
+  text-align: left;
+  text-decoration: none;
+  color: var(--ink-2);
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.14s var(--ease), color 0.14s var(--ease);
+}
+
+.navitem:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.navitem[aria-current='page'] {
+  background: var(--primary-soft);
+  color: var(--primary-deep);
+  font-weight: 600;
+}
+
+/* Faol bo'limning chap chekkasidagi ingichka chiziq — bayroq emas, belgi. */
+.navitem[aria-current='page']::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 2.5px;
+  border-radius: 2px;
+  background: var(--primary);
+}
+
+.navitem--soon,
+.navitem--soon:hover {
+  color: var(--ink-dim);
+  cursor: default;
+  background: none;
+}
+
+.navitem__icon {
+  width: 26px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  color: currentColor;
+}
+
+.navitem__label {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+}
+
+.soon {
+  font-family: var(--font-display);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: var(--surface-3);
+  color: var(--ink-dim);
+  white-space: nowrap;
+}
+
+/* --- kartalar ------------------------------------------------------------ */
+
+.card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 22px 24px;
+  box-shadow: var(--sh-sm);
+}
+
+.card--flush {
+  padding: 0;
+  overflow: hidden;
+}
+
+.card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+/* Bosiladigan karta — iboradan tayanadigan grammatikaga o'tish uchun.
+   Ko'rinishi oddiy kartadek, lekin bosilishi bilinib turadi. */
+.card--link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.16s ease,
+    transform 0.16s ease,
+    box-shadow 0.16s ease;
+}
+
+.card--link:hover {
+  border-color: var(--primary-soft);
+  transform: translateY(-1px);
+  box-shadow: var(--sh);
+}
+
+.card__linktext {
+  display: block;
+  font-weight: 600;
+}
+
+/* Bog'lam qaysi yo'nalishga olib borishi — matndan OLDIN, kichik yorliq. */
+.card__linkkind {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.stack--tight {
+  display: grid;
+  gap: 10px;
+}
+
+.card__linkgo {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* --- iboralar ------------------------------------------------------------
+   Ro'yxatda va sarlavha ostida asosiy narsa iboraning O'ZI: o'quvchi
+   ingliz tilidagi shaklni birinchi ko'rishi kerak, tarjima ikkinchi. */
+.phrase__en {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.phrase__badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* --- bugungi holat -------------------------------------------------------
+   Til platformalarining asosiy naqshi: kunlik maqsad + ketma-ketlik +
+   hafta. Bular bir qatorda turadi, chunki ularning uchalasi ham bitta
+   savolga javob beradi: "bugun nima qildim?"
+   ------------------------------------------------------------------------- */
+
+.today {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 28px;
+  align-items: center;
+  padding: 22px 26px;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-sm);
+}
+
+.today__goal {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.today__title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.today__stats {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.ring {
+  position: relative;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  --ring-track: var(--surface-3);
+  --ring-fill: var(--primary);
+}
+
+.ring svg {
+  position: absolute;
+  inset: 0;
+}
+
+.ring__center {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 1px;
+}
+
+.ring__value {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.ring__unit {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-dim);
+}
+
+.stat {
+  text-align: left;
+}
+
+/* To'q fondagi halqa — sessiya ekranida taymer atrofida. */
+.ring--on-dark {
+  --ring-track: rgba(255, 255, 255, 0.16);
+  --ring-fill: #fff;
+}
+
+.stat__value {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat__label {
+  font-size: 11.5px;
+  color: var(--ink-dim);
+  margin-top: 2px;
+}
+
+/* Hafta — ettita ustun. Diagramma emas, ritm: qaysi kunlar gapirilgan. */
+.week {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 32px;
+  margin-bottom: 4px;
+}
+
+.week__day {
+  width: 7px;
+  height: var(--h, 10%);
+  border-radius: 3px;
+  background: var(--surface-3);
+}
+
+.week__day--on {
+  background: var(--primary);
+}
+
+/* --- asosiy harakat: davom etish ----------------------------------------
+   Sahifadagi YAGONA to'q rangli blok. Shuning uchun ko'z birinchi shunga
+   tushadi va keyingi qadam har doim aniq bo'ladi.
+   ------------------------------------------------------------------------- */
+
+.continue {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 30px;
+  align-items: center;
+  padding: 28px 30px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  color: var(--on-brand);
+  background: var(--brand-surface);
+  border: 1px solid var(--primary-line);
+}
+
+.continue::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--ornament-light);
+  background-size: 64px 64px;
+}
+
+.continue > * {
+  position: relative;
+}
+
+.continue .eyebrow {
+  color: var(--ink-dim);
+}
+
+.continue__title {
+  color: var(--ink);
+  font-size: 23px;
+  margin-top: 6px;
+}
+
+.continue__summary {
+  margin-top: 10px;
+  max-width: 62ch;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.continue__side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.continue__eq {
+  width: 116px;
+  height: 58px;
+  color: var(--primary);
+  opacity: 0.45;
+}
+
+.continue__mic {
+  width: 108px;
+  height: 108px;
+  color: var(--primary);
+  opacity: 0.5;
+}
+
+.continue__meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+
+/* --- o'quv yo'li ---------------------------------------------------------
+   Yassi ro'yxat emas, KETMA-KETLIK: o'tilgan, joriy va yopiq qadamlar bir
+   chiziqda turadi, ya'ni o'quvchi qayerdaligini va nima qolganini ko'radi.
+   ------------------------------------------------------------------------- */
+
+.path {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  padding: 4px 0;
+}
+
+/* Qadamlarni bog'lovchi chiziq */
+.step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 17px;
+  top: 50%;
+  bottom: -4px;
+  width: 2px;
+  transform: translateX(-50%);
+  background: var(--line);
+}
+
+.step--mastered:not(:last-child)::before {
+  background: var(--green);
+  opacity: 0.45;
+}
+
+.step__mark {
+  position: relative;
+  z-index: 1;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  background: var(--surface-3);
+  color: var(--ink-dim);
+  border: 2px solid var(--bg);
+}
+
+.step__mark--done {
+  background: var(--green);
+  color: #fff;
+}
+
+.step__mark--active {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.step__mark--fix {
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+/* Bosilmaydigan qator — natija va progress ekranlarida. */
+.step__body--static {
+  cursor: default;
+}
+
+.step__body--static:hover {
+  border-color: var(--line);
+  background: var(--surface);
+}
+
+.step__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: var(--r);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.14s var(--ease), background 0.14s var(--ease);
+}
+
+.step__body:hover:not(:disabled) {
+  border-color: var(--line-strong);
+  background: var(--surface-2);
+}
+
+.step__body:disabled {
+  cursor: not-allowed;
+  background: transparent;
+  border-style: dashed;
+  opacity: 0.65;
+}
+
+.step--active .step__body {
+  border-color: var(--primary-line);
+  background: var(--primary-soft);
+}
+
+.step__title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.step__aside {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+/* Ro'yxat qatori — tarix va shunga o'xshash sodda ro'yxatlar uchun. */
+.row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 13px 20px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.row:hover {
+  background: var(--surface-2);
+}
+
+.row__title {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14.5px;
+}
+
+/* Ochiladigan blok sarlavhasi (to'liq transkript). */
+.disclosure {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 22px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.disclosure::-webkit-details-marker {
+  display: none;
+}
+
+/* --- INGLIZ TILI QATLAMI -------------------------------------------------
+   Ilovaning mavzusi ekranda ko'rinishi kerak. Shuning uchun inglizcha gap
+   alohida ko'rinishga ega: yirik va qalin, ostida kichik xira tarjima.
+   ------------------------------------------------------------------------- */
+
+/* Ilgari inglizcha gap ostiga sariq marker tasmasi tortilardi (`.marker`).
+   U olib tashlandi: gap allaqachon o'lchami va vazni bilan ajralib turadi
+   (21-30px, Manrope 600, tarjima esa 15px xira) — tasma shu ierarxiyaga
+   hech narsa qo'shmasdi, faqat har bo'limda takrorlanadigan sariq chiziq
+   bo'lib qolgan edi. Sariq (`--marker`) endi faqat holat rangi. */
+
+.sentence {
+  font-family: var(--font-display);
+  font-size: clamp(21px, 2.4vw, 30px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  /* 1.55 marker tasmasi uchun tanlangan edi (1.35 da tasma pastdagi qatorga
+     kirib ketardi). Tasma ketdi, qiymat qoldi: 30px li ikki qatorli gapga
+     shuncha bo'shliq kerak, 1.35 da qatorlar siqilib qoladi. */
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.sentence--on-dark {
+  color: var(--on-brand);
+}
+
+.sentence__tr {
+  margin-top: 9px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--ink-dim);
+}
+
+.sentence--on-dark .sentence__tr {
+  color: var(--ink-dim);
+}
+
+/* Grammatik shakl nomi — dars mavzusi, inglizcha. */
+.structure {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+.structure--on-dark {
+  border-color: var(--primary-line);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--on-brand);
+}
+
+.structure__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--marker);
+}
+
+/* Inglizcha sarlavha — o'zbekcha nom ostidagi asl nom. */
+.title-en {
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-dim);
+}
+
+/* Rejim kartasidagi inglizcha misol — "bu yerda nima aytiladi" namunasi. */
+.mode__example {
+  margin-top: auto;
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+/* --- rejim kartalari ----------------------------------------------------- */
+
+.modes {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+}
+
+.mode {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 22px 22px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  text-align: left;
+  box-shadow: var(--sh-sm);
+  transition: border-color 0.16s var(--ease), box-shadow 0.16s var(--ease);
+}
+
+/* Rejim rangi faqat emblemada — karta toza oq qoladi. Ilgari tepada 3px
+   rangli chiziq bor edi: to'rtta karta yonma-yon turganda u ro'yxatni
+   rangli tasmalar qatoriga aylantirardi. */
+
+.mode--ready {
+  cursor: pointer;
+}
+
+.mode--ready:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--sh);
+}
+
+.mode--soon {
+  background: var(--surface-2);
+}
+
+.mode--soon .mode__example {
+  background: transparent;
+}
+
+.mode__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mode__emblem {
+  width: 46px;
+  height: 46px;
+  color: var(--mode-color, var(--primary));
+}
+
+.mode--soon .mode__emblem {
+  color: var(--ink-dim);
+}
+
+.mode__title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.mode__desc {
+  color: var(--ink-dim);
+  font-size: 13.5px;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.mode__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--mode-color, var(--primary));
+}
+
+.mode--soon .mode__cta {
+  color: var(--ink-dim);
+}
+
+/* --- davom etish --------------------------------------------------------- */
+
+.resume {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding: 22px 24px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--primary-line);
+  background: var(--primary-soft);
+  text-align: left;
+  cursor: pointer;
+  transition: box-shadow 0.16s var(--ease);
+}
+
+.resume:hover {
+  box-shadow: var(--sh);
+}
+
+.resume__title {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 6px 0 4px;
+}
+
+/* --- tugmalar ------------------------------------------------------------ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  background: var(--surface-3);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.14s var(--ease), border-color 0.14s var(--ease);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: var(--primary-deep);
+}
+
+.btn--white {
+  background: var(--surface);
+  color: var(--primary-deep);
+  border-color: var(--line);
+}
+
+.btn--ghost {
+  background: var(--surface);
+  border-color: var(--line-strong);
+  color: var(--ink-2);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.btn--danger {
+  background: var(--surface);
+  border-color: var(--line-strong);
+  color: var(--red);
+}
+
+.btn--danger:hover:not(:disabled) {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+
+.btn--lg {
+  padding: 13px 24px;
+  font-size: 15px;
+}
+
+.btnrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.linkbtn {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+/* --- orqaga qaytish ------------------------------------------------------
+   Ilgari bu oddiy kulrang matn edi: past kontrast, kichik nishon, sarlavha
+   bilan qo'shilib ketardi. Endi u sirt ustidagi chip — ko'rinadi, bosiladi
+   va sahifa sarlavhasining OLDIDA turgani darrov o'qiladi. */
+
+.backlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 34px;
+  padding: 0 14px 0 5px;
+  margin-bottom: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  box-shadow: var(--sh-sm);
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: border-color 0.14s var(--ease), background 0.14s var(--ease),
+    color 0.14s var(--ease), box-shadow 0.14s var(--ease), transform 0.1s var(--ease);
+}
+
+.backlink__icon {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  background: var(--surface-3);
+  color: var(--ink-2);
+  transition: background 0.14s var(--ease), color 0.14s var(--ease);
+}
+
+.backlink__icon .icon {
+  transition: transform 0.14s var(--ease);
+}
+
+.backlink__label {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.backlink:hover {
+  border-color: var(--primary-line);
+  color: var(--primary-deep);
+  box-shadow: var(--sh);
+}
+
+.backlink:hover .backlink__icon {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+/* Strelka chapga siljiydi — harakat yo'nalishning o'zi, bezak emas. */
+.backlink:hover .backlink__icon .icon {
+  transform: translateX(-2px);
+}
+
+.backlink:active {
+  transform: translateY(1px);
+  box-shadow: var(--sh-sm);
+}
+
+.backlink:focus-visible {
+  border-radius: var(--r-sm);
+  outline-offset: 3px;
+}
+
+/* --- yorliqlar ----------------------------------------------------------- */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 5px;
+  background: var(--surface-3);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+.tag--active {
+  background: var(--primary-soft);
+  color: var(--primary-deep);
+}
+
+.tag--done {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.tag--locked {
+  color: var(--ink-dim);
+}
+
+/* --- ro'yxat qatorlari --------------------------------------------------- */
+
+.grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+}
+
+.tile {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: var(--r);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.14s var(--ease), background 0.14s var(--ease);
+}
+
+.tile:hover:not(:disabled) {
+  border-color: var(--line-strong);
+  background: var(--surface-2);
+}
+
+.tile:disabled {
+  cursor: not-allowed;
+  background: var(--surface-2);
+}
+
+.tile__glyph {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-sm);
+  background: var(--primary-soft);
+  color: var(--primary-deep);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13.5px;
+  letter-spacing: -0.02em;
+}
+
+.tile__glyph--warm {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.tile__glyph--muted {
+  background: var(--surface-3);
+  color: var(--ink-dim);
+}
+
+.tile__title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 2px;
+  overflow-wrap: anywhere;
+}
+
+.tile__aside {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* Sarlavha ostidagi metama'lumot qatori: shakl chipi shu yerda turadi,
+   yon ustunda emas — aks holda u sarlavhani bir so'zli ustunga siqadi. */
+.tile__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+.tile__trace {
+  width: 76px;
+}
+
+/* --- o'lchovlar ---------------------------------------------------------- */
+
+.metrics {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+
+.metric {
+  padding: 18px 20px;
+  background: var(--surface);
+}
+
+.metric__icon {
+  color: var(--ink-dim);
+}
+
+.metric--warm .metric__icon {
+  color: var(--marker-ink);
+}
+
+.metric--green .metric__icon {
+  color: var(--green);
+}
+
+.metric--gold .metric__icon {
+  color: var(--marker-ink);
+}
+
+.metric__value {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  margin: 10px 0 3px;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric__label {
+  font-size: 12.5px;
+  color: var(--ink-dim);
+  line-height: 1.45;
+}
+
+/* --- juftliklar ---------------------------------------------------------- */
+
+.pairs {
+  display: flex;
+  flex-direction: column;
+}
+
+.pair {
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.pair:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.pair:first-child {
+  padding-top: 0;
+}
+
+.pair__en {
+  display: block;
+  font-weight: 600;
+}
+
+.pair__tr {
+  display: block;
+  color: var(--ink-dim);
+  font-size: 14px;
+}
+
+.fix__wrong {
+  display: block;
+  color: var(--ink-dim);
+  text-decoration: line-through;
+  text-decoration-color: var(--red);
+}
+
+.fix__right {
+  display: block;
+  font-weight: 600;
+  color: var(--green);
+}
+
+/* --- xabarlar ------------------------------------------------------------ */
+
+.banner {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  padding: 13px 16px;
+  border-radius: var(--r);
+  border: 1px solid var(--primary-line);
+  background: var(--primary-soft);
+  color: var(--primary-deep);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.banner--error {
+  border-color: transparent;
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+.banner--warn {
+  border-color: transparent;
+  background: var(--marker-soft);
+  color: var(--marker-ink);
+}
+
+/* --- yuklanish va bo'shlik ----------------------------------------------- */
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton {
+  height: 66px;
+  border-radius: var(--r);
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 38px 30px;
+  text-align: center;
+  color: var(--ink-dim);
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px dashed var(--line-strong);
+}
+
+/* --- ovoz izi ------------------------------------------------------------ */
+
+.trace {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+@keyframes trace-in {
+  from {
+    transform: scaleY(0.2);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.trace--enter .trace__band {
+  transform-origin: center;
+  animation: trace-in 0.5s var(--ease) both;
+}
+
+
+/* --- ovoz orbi (§VoiceOrb) ------------------------------------------------
+   Uchta xiralashgan rangli dog' sekin aylanadi, mikrofon darajasi esa butun
+   maydonni kattalashtiradi. Bu Gemini Live'dagi bilan bir mantiq: suhbat
+   uzluksiz, shuning uchun vizual ham uzluksiz.
+   ------------------------------------------------------------------------- */
+
+.orb {
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+}
+
+.orb__field {
+  position: absolute;
+  inset: 8%;
+  transition: transform 0.14s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.orb__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(22px);
+  opacity: 0.75;
+}
+
+.orb__blob--1 {
+  inset: 0 26% 26% 0;
+  animation: orbit-a 9s linear infinite;
+}
+
+.orb__blob--2 {
+  inset: 22% 0 0 24%;
+  animation: orbit-b 11s linear infinite;
+}
+
+.orb__blob--3 {
+  inset: 14% 14% 14% 14%;
+  opacity: 0.55;
+  animation: orbit-a 14s linear infinite reverse;
+}
+
+@keyframes orbit-a {
+  from {
+    transform: rotate(0deg) translateX(6%) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(6%) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-b {
+  from {
+    transform: rotate(0deg) translateX(8%) rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg) translateX(8%) rotate(360deg);
+  }
+}
+
+/* Ichki oq yadro — orb "shisha" ostidagidek ko'rinadi. */
+.orb__core {
+  position: relative;
+  width: 46%;
+  height: 46%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.55));
+  backdrop-filter: blur(2px);
+}
+
+:root[data-theme='dark'] .orb__core {
+  background: radial-gradient(circle at 32% 28%, rgba(30, 34, 46, 0.9), rgba(20, 23, 32, 0.7));
+}
+
+.orb__ring {
+  position: absolute;
+  inset: 4%;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb__blob {
+    animation: none !important;
+  }
+}
+
+/* --- sessiya ------------------------------------------------------------- */
+
+.session {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 16px;
+  padding: 20px 24px 24px;
+  background: var(--bg);
+}
+
+.session__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 22px;
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.session__stats {
+  display: flex;
+  gap: 26px;
+}
+
+.session__stats .stat__value {
+  font-size: 20px;
+}
+
+.session__topic {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.session__body {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  gap: 16px;
+  min-height: 0;
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 30px 26px;
+  border-radius: var(--r-lg);
+  color: var(--on-brand);
+  background: var(--brand-surface);
+  border: 1px solid var(--primary-line);
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+  overflow: hidden;
+}
+
+.stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--ornament-light);
+  background-size: 64px 64px;
+}
+
+.stage > * {
+  position: relative;
+  width: 100%;
+}
+
+.stage .ring {
+  margin: 0 auto;
+}
+
+.timer {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer--low {
+  color: var(--red);
+}
+
+.state {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+  width: auto;
+  margin: 0 auto;
+}
+
+.state__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ink-dim);
+}
+
+.session[data-state='listening'] .state__dot {
+  background: var(--primary);
+}
+
+.session[data-state='ai_speaking'] .state__dot {
+  background: var(--pink);
+}
+
+.session[data-state='evaluating'] .state__dot {
+  background: var(--marker-ink);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.session[data-state='listening'] .state__dot,
+.session[data-state='ai_speaking'] .state__dot {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.counters {
+  display: flex;
+  justify-content: center;
+  gap: 26px;
+  font-size: 12.5px;
+  color: var(--ink-dim);
+}
+
+.counters b {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.chat {
+  min-height: 0;
+  overflow-y: auto;
+  padding: 22px 24px;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.chat__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink-dim);
+  text-align: center;
+  padding: 46px 0;
+}
+
+.msg {
+  margin-bottom: 18px;
+  max-width: 62ch;
+}
+
+.msg--learner {
+  margin-left: auto;
+}
+
+.msg__who {
+  font-family: var(--font-display);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 5px;
+}
+
+.msg--learner .msg__who {
+  text-align: right;
+}
+
+.msg__text {
+  padding: 11px 15px;
+  border-radius: var(--r);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  line-height: 1.55;
+}
+
+.msg--learner .msg__text {
+  background: var(--primary-soft);
+  border-color: var(--primary-line);
+}
+
+.msg--partial .msg__text {
+  opacity: 0.6;
+}
+
+.msg__tr {
+  margin-top: 5px;
+  font-size: 13.5px;
+  color: var(--ink-dim);
+  padding: 0 15px;
+}
+
+.fixes {
+  margin-top: 7px;
+  padding: 9px 14px;
+  border-radius: var(--r-sm);
+  background: var(--red-soft);
+  font-size: 13.5px;
+  list-style: none;
+}
+
+.fixes--clean {
+  background: var(--green-soft);
+  color: var(--green);
+  font-weight: 600;
+}
+
+.fix {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.fix + .fix {
+  margin-top: 5px;
+}
+
+.fix__from {
+  text-decoration: line-through;
+  color: var(--ink-dim);
+}
+
+.fix__to {
+  font-weight: 600;
+  color: var(--red);
+}
+
+.prompts {
+  padding: 14px 16px;
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.prompts__label {
+  font-family: var(--font-display);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--marker-ink);
+}
+
+.prompts__list {
+  list-style: none;
+  margin: 9px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 9px;
+}
+
+.prompts__en {
+  font-weight: 600;
+}
+
+.prompts__tr {
+  font-size: 12.5px;
+  color: var(--ink-dim);
+}
+
+/* --- til va foydalanuvchi ------------------------------------------------ */
+
+.langswitch {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  border-radius: var(--r-sm);
+  background: var(--surface-3);
+}
+
+.langswitch button {
+  flex: 1;
+  padding: 6px 9px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  font-family: var(--font-display);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--ink-dim);
+  cursor: pointer;
+}
+
+.langswitch button[aria-pressed='true'] {
+  background: var(--surface);
+  color: var(--primary-deep);
+  box-shadow: var(--sh-sm);
+}
+
+/* --- profil menyusi ------------------------------------------------------
+   Til, mavzu va chiqish — kunda bir marta ham bosilmaydigan sozlamalar.
+   Ular doimiy qator bo'lib turganda mashq yo'nalishlari bilan bir xil
+   vaznda ko'rinardi; endi profil ostida, faqat kerak bo'lganda ochiladi. */
+
+.usermenu {
+  position: relative;
+}
+
+.usermenu__trigger {
+  width: 100%;
+}
+
+.usermenu__caret {
+  margin-left: auto;
+  color: var(--ink-dim);
+}
+
+.usermenu--open .usermenu__trigger {
+  background: var(--surface-3);
+  color: var(--ink);
+}
+
+.usermenu__panel {
+  position: absolute;
+  z-index: 20;
+  bottom: calc(100% + 8px);
+  left: 0;
+  min-width: 232px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--surface);
+  box-shadow: var(--sh-lift);
+  animation: menu-in 0.14s var(--ease);
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+.usermenu__who {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px 10px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 4px;
+}
+
+.usermenu__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--ink);
+}
+
+.usermenu__mail {
+  font-size: 12px;
+  color: var(--ink-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.usermenu__group {
+  padding: 2px 10px 8px;
+}
+
+/* Menyu ichidagi yorliq tor ekranda ham ko'rinadi — `navitem__label` dan
+   farqi shu: u yerda faqat ikonka qoladi, bu yerda esa matn shart. */
+.usermenu__label {
+  font-size: 13.5px;
+}
+
+.avatar {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  background: var(--primary);
+  color: var(--on-dark);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11.5px;
+}
+
+/* --- kirish ekrani ------------------------------------------------------- */
+
+.auth {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+}
+
+.auth__poster {
+  position: relative;
+  overflow: hidden;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+  color: var(--ink);
+  background: var(--brand-surface);
+}
+
+.auth__poster::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--ornament-light);
+  background-size: 64px 64px;
+}
+
+.auth__poster > * {
+  position: relative;
+}
+
+.auth__poster h1 {
+  font-size: clamp(28px, 3vw, 40px);
+  max-width: 17ch;
+}
+
+.auth__lede {
+  margin-top: 14px;
+  max-width: 44ch;
+  color: var(--ink-2);
+  font-size: 15.5px;
+}
+
+.auth__points {
+  display: grid;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.auth__point {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14.5px;
+  color: var(--ink-2);
+}
+
+.auth__point span {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--primary);
+}
+
+.auth__art {
+  width: 168px;
+  height: auto;
+  opacity: 0.7;
+  align-self: flex-end;
+}
+
+.auth__eq {
+  width: 190px;
+  height: 62px;
+  color: var(--primary);
+  opacity: 0.5;
+}
+
+.auth__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px clamp(30px, 5vw, 70px);
+  background: var(--surface);
+}
+
+/* Forma elementlari markazda, o'qish uchun qulay kenglikda. */
+.auth__form > * {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Til almashtirgichi — kichik boshqaruv, forma kengligini egallamaydi. */
+.auth__form > .langswitch {
+  width: auto;
+  max-width: none;
+  align-self: flex-end;
+  margin-right: calc((100% - 400px) / 2);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.field label {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.field input {
+  padding: 12px 14px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  transition: border-color 0.14s var(--ease), box-shadow 0.14s var(--ease);
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+.field__error {
+  font-size: 12.5px;
+  color: var(--red);
+}
+
+.segmented {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: var(--r-sm);
+  background: var(--surface-3);
+  margin-bottom: 22px;
+}
+
+.segmented button {
+  flex: 1;
+  padding: 9px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink-dim);
+  cursor: pointer;
+}
+
+.segmented button[aria-selected='true'] {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--sh-sm);
+}
+
+/* --- tor ekran ----------------------------------------------------------- */
+
+@media (max-width: 980px) {
+  .app {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rail {
+    position: sticky;
+    z-index: 5;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 10px 12px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* Tor ekranda panel gorizontal qatorga aylanadi. Unda logotip yozuvi ham,
+     qatorlar orasidagi keng bo'shliq ham joy yeydi — ikkalasi ham kerak emas:
+     belgi o'zi ilovani tanitadi, yozuv esa faqat suradi. */
+  .rail__wordmark {
+    display: none;
+  }
+
+  .rail__nav {
+    flex-direction: row;
+  }
+
+  .navitem {
+    padding: 9px;
+  }
+
+  .navitem__label,
+  .soon {
+    display: none;
+  }
+
+  .rail__foot {
+    margin: 0 0 0 auto;
+    flex-direction: row;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  /* Panel yuqorida turibdi — menyu pastga ochiladi va o'ng chetga
+     tekislanadi, aks holda ekrandan chiqib ketardi. */
+  .usermenu__panel {
+    top: calc(100% + 10px);
+    bottom: auto;
+    left: auto;
+    right: 0;
+  }
+
+  .page {
+    padding: 22px 16px 64px;
+  }
+
+  .today,
+  .continue,
+  .resume {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 20px;
+  }
+
+  .today__stats {
+    gap: 20px;
+  }
+
+  .step__aside .structure {
+    display: none;
+  }
+
+  .session {
+    padding: 12px;
+  }
+
+  .session__body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .stage {
+    position: static;
+  }
+
+  .auth {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .auth__poster,
+  .auth__form {
+    padding: 30px;
+  }
+}
+
+/* --- telefon -------------------------------------------------------------
+   360-560px da hammasi bitta qatorga sig'maydi: panel gorizontal siljish
+   bilan qolgan tugmalarni (til, mavzu, profil) ko'zdan yashirardi — ular
+   bor, lekin yon tomonga surmaguncha topilmaydi. Shuning uchun ikki qator:
+   yuqorida belgi va sozlamalar, ostida esa mashq yo'nalishlari — ekran
+   bo'ylab teng tarqalgan, xuddi tab qatori kabi. */
+
+@media (max-width: 560px) {
+  .rail {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    gap: 6px 8px;
+  }
+
+  .rail__mark {
+    order: 1;
+  }
+
+  .rail__foot {
+    order: 2;
+    margin-left: auto;
+  }
+
+  .rail__nav {
+    order: 3;
+    flex: 1 0 100%;
+    gap: 2px;
+  }
+
+  .rail__nav .navitem {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+
+/* --- shadowing sahnasi ----------------------------------------------------
+   Bu yerda asosiy narsa — ETALON. Shuning uchun video (yoki to'lqin) eng
+   tepada va eng katta, gap matni ostida, baho esa pastda: o'quvchi avval
+   eshitadi, keyin o'qiydi, keyingina natijani ko'radi.
+   ------------------------------------------------------------------------- */
+
+.stage--shadow {
+  gap: 14px;
+  align-items: stretch;
+  text-align: left;
+}
+
+.shadow__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.shadow__mic {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--primary-line);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+
+.shadow__mic.is-on {
+  background: var(--green-soft);
+  border-color: transparent;
+  color: var(--green);
+}
+
+.shadow__video {
+  width: 100%;
+  border-radius: var(--r);
+  background: #000;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* Video biriktirilmagan bo'lsa — eshitilayotgan gapning to'lqini. */
+.shadow__wave {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 92px;
+  border-radius: var(--r);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--primary-line);
+}
+
+.shadow__wave span {
+  width: 6px;
+  height: 14px;
+  border-radius: 3px;
+  background: var(--primary-mid);
+  opacity: 0.55;
+}
+
+.shadow__wave.is-playing span {
+  animation: shadow-wave 0.9s ease-in-out infinite;
+}
+
+.shadow__wave.is-playing span:nth-child(2) {
+  animation-delay: 0.12s;
+}
+.shadow__wave.is-playing span:nth-child(3) {
+  animation-delay: 0.24s;
+}
+.shadow__wave.is-playing span:nth-child(4) {
+  animation-delay: 0.36s;
+}
+.shadow__wave.is-playing span:nth-child(5) {
+  animation-delay: 0.48s;
+}
+
+@keyframes shadow-wave {
+  0%,
+  100% {
+    height: 14px;
+    opacity: 0.5;
+  }
+  50% {
+    height: 52px;
+    opacity: 1;
+  }
+}
+
+.shadow__text {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.shadow__controls {
+  display: flex;
+  gap: 8px;
+}
+
+.shadow__hint {
+  font-size: 12.5px;
+}
+
+.shadowcard {
+  border-radius: var(--r);
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  display: grid;
+  gap: 10px;
+}
+
+.shadowcard--ok {
+  border-color: var(--green);
+}
+
+.shadowcard--work {
+  border-color: var(--marker);
+}
+
+.shadowcard__score {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-family: var(--font-display);
+}
+
+.shadowcard__value {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.shadowcard__unit {
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+
+.shadowcard__bars {
+  display: grid;
+  gap: 6px;
+}
+
+.shadowbar {
+  display: grid;
+  grid-template-columns: 62px 1fr 74px;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+.shadowbar__track {
+  height: 7px;
+  border-radius: 4px;
+  background: var(--surface-3);
+  overflow: hidden;
+}
+
+.shadowbar__fill {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--primary);
+  transition: width 0.35s var(--ease);
+}
+
+.shadowbar__fill--good {
+  background: var(--green);
+}
+
+.shadowbar__fill--too_slow,
+.shadowbar__fill--too_fast {
+  background: var(--marker);
+}
+
+.shadowbar__num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.shadowcard__note {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.shadowcard__missed,
+.shadowcard__heard {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--ink-dim);
+}
+
+/* --- rol suhbat sahnasi ---------------------------------------------------
+   Maqsad: ekranga qaragan odam "mashq oynasi" emas, JOY ko'rsin. Rasm yo'q —
+   rang, yorug'lik va siluetlar. Har vaziyatning o'z rangi bor.
+   ------------------------------------------------------------------------- */
+
+.stage--scene {
+  position: relative;
+  overflow: hidden;
+  align-items: stretch;
+  text-align: left;
+  --scene-a: #4361ee;
+  --scene-b: #7c5cf0;
+}
+
+.scene--cafe {
+  --scene-a: #b4703a;
+  --scene-b: #e0a24a;
+}
+.scene--street {
+  --scene-a: #3d5a80;
+  --scene-b: #6b8cae;
+}
+.scene--office {
+  --scene-a: #3f4a7a;
+  --scene-b: #6d7ab8;
+}
+.scene--clinic {
+  --scene-a: #2f8a8a;
+  --scene-b: #7ec9c9;
+}
+.scene--hotel {
+  --scene-a: #7a4b73;
+  --scene-b: #c08bb8;
+}
+.scene--shop {
+  --scene-a: #3f7a52;
+  --scene-b: #85c197;
+}
+
+.scene__art {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.scene__glow {
+  position: absolute;
+  inset: -30% -10% auto -10%;
+  height: 70%;
+  background: radial-gradient(
+    circle at 50% 20%,
+    color-mix(in srgb, var(--scene-b) 55%, transparent),
+    transparent 65%
+  );
+  filter: blur(30px);
+}
+
+/* Uzoqdagi odamlar — atigi ikkita takrorlanuvchi gradient dog'i. */
+.scene__figures {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 46%;
+  background:
+    radial-gradient(ellipse 60px 90px at 18% 100%, color-mix(in srgb, var(--scene-a) 40%, transparent), transparent 70%),
+    radial-gradient(ellipse 46px 70px at 34% 100%, color-mix(in srgb, var(--scene-a) 28%, transparent), transparent 70%),
+    radial-gradient(ellipse 70px 100px at 78% 100%, color-mix(in srgb, var(--scene-a) 34%, transparent), transparent 70%);
+}
+
+.scene__who {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.scene__avatar {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--scene-a), var(--scene-b));
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.scene__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.scene__role {
+  font-size: 12.5px;
+  color: var(--ink-2);
+}
+
+.scene__mute {
+  margin-left: auto;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--primary-line);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.scene__mute[aria-pressed='true'] {
+  color: var(--ink-dim);
+  opacity: 0.7;
+}
+
+.scene__setting {
+  position: relative;
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-2);
+  font-style: italic;
+}
+
+.material__video {
+  width: 100%;
+  border-radius: var(--r-lg);
+  background: #000;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+}
+
+/* --- Tanishuv (2-qadam) va birinchi suhbat ------------------------------
+   Ikkalasi ham qobiqsiz (bare) ekran: navigatsiya yo'q, chunki bu qadamlarni
+   chetlab o'tish mumkin emas. Shu bois markazda, tor ustunda va bitta amal
+   bilan — o'quvchining ko'zi hech qayerga chalg'imasin. */
+
+.onboarding,
+.placement {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 40px 20px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.onboarding__head h1,
+.placement__head h1 {
+  margin: 6px 0 10px;
+}
+
+.onboarding__step {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.onboarding__form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.onboarding__levels {
+  display: grid;
+  gap: 10px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.onboarding__levels legend {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+  padding: 0 0 10px;
+}
+
+/* Radio tugmaning o'zi yashiringan, lekin OLIB TASHLANMAGAN: klaviatura bilan
+   yurish va o'qish dasturlari aynan unga tayanadi. */
+.onboarding__level {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  cursor: pointer;
+  transition: border-color 0.14s var(--ease), box-shadow 0.14s var(--ease);
+}
+
+.onboarding__level input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.onboarding__level:hover {
+  border-color: var(--primary);
+}
+
+.onboarding__level:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+.onboarding__level.is-chosen {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.onboarding__level-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.onboarding__level-text strong {
+  font-family: var(--font-display);
+  font-size: 15px;
+}
+
+.onboarding__level-text .muted {
+  font-size: 13px;
+}
+
+.field__label {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.field textarea {
+  padding: 12px 14px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  resize: vertical;
+  min-height: 96px;
+  transition: border-color 0.14s var(--ease), box-shadow 0.14s var(--ease);
+}
+
+.field textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+
+.placement__points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.placement__points li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14.5px;
+  color: var(--ink-2);
+}
+
+.placement__points li span {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--primary);
+}
+
+.placement__eq {
+  margin-top: 6px;
+  opacity: 0.5;
+}
+
+/* --- Qadam ko'rsatkichi -------------------------------------------------
+   Nuqtalar, joriy qadam esa uzun chiziqcha bo'lib cho'ziladi. O'lcham va rang
+   ikkalasi ham o'zgaradi: faqat rang bilan farqlansa, rang ko'rmaydigan
+   foydalanuvchi qayerda turganini bilmaydi. */
+
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.steps__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--line-strong);
+  transition: width 0.22s var(--ease), background-color 0.22s var(--ease);
+}
+
+.steps__dot.is-current {
+  width: 30px;
+  background: var(--primary);
+}

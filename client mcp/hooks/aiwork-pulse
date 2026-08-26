@@ -1,0 +1,128 @@
+#!/usr/bin/env python
+"""aiwork faoliyat izi — Claude Code'ning PostToolUse hook'i.
+
+Uchta ish qiladi va boshqa hech narsa:
+
+  1. stdin'dan JSON o'qiydi (Claude Code PostToolUse formati);
+  2. `~/.aiwork/journal.ndjson` ga bitta qator qo'shadi;
+  3. exit 0.
+
+**Bu skript hisobot yozmaydi.** U «ish bo'ldi» faktini qayd qiladi: qaysi
+asbob, qaysi fayl, qachon. «Nima qilindi va nega» — agentning hisobot
+tool'lari vazifasi. Ikkisi almashtirilmaydi: hisobot — talqin, iz — fakt.
+
+QAT'IY TALABLAR — bittasi buzilsa hook o'chirib tashlanadi va butun qatlam
+yo'qoladi:
+
+  * **Tarmoq yo'q.** Bitta HTTP so'rov ham qilinmaydi. Server sekinlashsa
+    yoki javob bermasa, hook agentning har bir tahririni kutishga majbur
+    qilardi — va odam uni birinchi kuni o'chirardi.
+  * **Tez.** Faqat open/write/close, import ham minimal: hook har bir
+    Edit'dan keyin chaqiriladi.
+  * **Har qanday xato yutiladi.** Nolga teng bo'lmagan exit kodi agent
+    oqimiga xalaqit qiladi, ya'ni kuzatuv vositasi kuzatilayotgan ishni
+    buzardi. Shuning uchun `except Exception: pass` — bu yerda u ataylab.
+  * **`seq` hisoblanmaydi.** Hook parallel chaqirilishi mumkin, ikki chaqiruv
+    bir xil raqam berardi. Raqamlashni server qiladi.
+
+**Faqat o'rnatilgan loyihalar.** Hook `~/.claude/settings.json` da global
+ro'yxatga olinadi, ya'ni mashinadagi HAR QANDAY loyihada ishlaydi. Shuning
+uchun `~/.aiwork/projects` dagi yo'llar tekshiriladi: o'sha papkalar ichidagi
+ish yoziladi, qolgani yo'q. Usiz begona repozitoriyning fayl yo'llari
+jamoaning bazasiga tushardi — hech kim so'ramagan holda.
+
+**Sir yozilmaydi.** `Bash` uchun buyruqning faqat BIRINCHI SO'ZI saqlanadi
+(`pytest`, `alembic`, `docker`). To'liq buyruq yozilsa, `export TOKEN=...`,
+`curl -H "Authorization: ..."` va `psql "postgresql://user:parol@..."` kabi
+qatorlar avval diskdagi faylga, keyin bazaga tushardi — va u yerdan
+chiqarib bo'lmaydi, jurnal faqat qo'shiladi.
+"""
+import json
+import os
+import sys
+import time
+
+# Faqat ish qoldiradigan asboblar. O'qish va qidiruv iz qoldirmaydi va
+# qoldirmasligi kerak: jurnal «nima o'zgardi» degan savolga javob beradi.
+TOOLS = ("Edit", "Write", "MultiEdit", "Bash")
+# Jurnal 10 MB dan oshsa — yangisi boshlanadi, eskisi `.1` bo'ladi. Cheksiz
+# o'sadigan fayl bir kuni diskni to'ldiradi, va aynan ishlayotgan mashinada.
+MAX_BYTES = 10 * 1024 * 1024
+# Kuzatiladigan loyiha ildizlari, har qatorda bittasi. Faylni `install.*` yozadi.
+# Fayl yo'q yoki bo'sh bo'lsa — hammasi yoziladi: ro'yxat sozlanmagani uchun
+# izni yo'qotish, izni yo'qotmaslik uchun ro'yxat kerak bo'lganidan yomonroq.
+ROOTS_FILE = "projects"
+
+
+def target(tool, payload):
+    """Ish manzili: fayl yo'li yoki buyruqning birinchi so'zi."""
+    if tool == "Bash":
+        command = str(payload.get("command") or "").strip()
+        return command.split()[0][:200] if command.split() else None
+    for key in ("file_path", "path", "notebook_path"):
+        value = payload.get(key)
+        if value:
+            return str(value)[:200]
+    return None
+
+
+def watched(folder, cwd):
+    """Ish kuzatiladigan loyiha ichidami."""
+    try:
+        with open(os.path.join(folder, ROOTS_FILE), encoding="utf-8") as roots:
+            wanted = [line.strip() for line in roots if line.strip()]
+    except OSError:
+        return True
+    if not wanted or not cwd:
+        return not wanted
+    here = os.path.normcase(os.path.abspath(cwd))
+    return any(
+        here == os.path.normcase(os.path.abspath(root))
+        or here.startswith(os.path.normcase(os.path.abspath(root)) + os.sep)
+        for root in wanted
+    )
+
+
+def main():
+    raw = sys.stdin.read()
+    event = json.loads(raw)
+    tool = event.get("tool_name") or ""
+    if tool not in TOOLS:
+        return
+
+    home = os.path.expanduser("~")
+    folder = os.path.join(home, ".aiwork")
+    if not watched(folder, event.get("cwd")):
+        return
+
+    line = {
+        "ts": time.time(),
+        "client_sid": event.get("session_id"),
+        "tool": tool,
+        "target": target(tool, event.get("tool_input") or {}),
+        "cwd": event.get("cwd"),
+    }
+
+    os.makedirs(folder, exist_ok=True)
+    path = os.path.join(folder, "journal.ndjson")
+
+    # Aylanish yozishdan OLDIN: fayl allaqachon katta bo'lsa, yana bir qator
+    # qo'shib keyin o'lchash chegarani har safar bir qatorga oshirardi.
+    try:
+        if os.path.getsize(path) > MAX_BYTES:
+            os.replace(path, path + ".1")
+    except OSError:
+        pass
+
+    with open(path, "a", encoding="utf-8") as journal:
+        journal.write(json.dumps(line, ensure_ascii=False) + "\n")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception:
+        # Ataylab: kuzatuv vositasi kuzatilayotgan ishni to'xtatmaydi. Buzuq
+        # JSON, o'qishga ruxsat yo'q disk, to'lgan disk — hammasi jim o'tadi.
+        pass
+    sys.exit(0)

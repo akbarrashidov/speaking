@@ -1,0 +1,71 @@
+stages:
+  - lint
+  - test
+  - build
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  # Testlar tashqi servislarsiz ishlaydi.
+  USE_SQLITE: "1"
+  USE_LOCMEM_CACHE: "1"
+  USE_INMEMORY_CHANNEL_LAYER: "1"
+  CELERY_TASK_ALWAYS_EAGER: "1"
+  DJANGO_SETTINGS_MODULE: "config.settings"
+
+cache:
+  paths:
+    - .cache/pip
+    - frontend/node_modules
+
+backend:lint:
+  stage: lint
+  image: python:3.12-slim
+  script:
+    - pip install ruff
+    - ruff check backend
+    - ruff format --check backend
+
+frontend:lint:
+  stage: lint
+  image: node:22-alpine
+  script:
+    - cd frontend
+    - npm ci
+    - npm run lint
+
+backend:test:
+  stage: test
+  image: python:3.12-slim
+  script:
+    - pip install -r backend/requirements-dev.txt
+    - cd backend
+    - python manage.py check
+    - python manage.py makemigrations --check --dry-run
+    - python -m pytest -q
+  artifacts:
+    when: always
+    reports:
+      junit: backend/report.xml
+
+frontend:build:
+  stage: build
+  image: node:22-alpine
+  script:
+    - cd frontend
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - frontend/dist
+    expire_in: 1 week
+
+docker:build:
+  stage: build
+  image: docker:27
+  services:
+    - docker:27-dind
+  script:
+    - docker build -t speaking-backend:$CI_COMMIT_SHORT_SHA ./backend
+    - docker build -t speaking-frontend:$CI_COMMIT_SHORT_SHA ./frontend
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

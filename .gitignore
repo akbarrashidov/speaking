@@ -1,0 +1,22 @@
+.env
+*.pyc
+__pycache__/
+.venv/
+venv/
+db.sqlite3
+backend/staticfiles/
+backend/report.xml
+.pytest_cache/
+.ruff_cache/
+node_modules/
+frontend/dist/
+.idea/
+.vscode/
+*.log
+
+# Claude Code local settings (skills stay tracked on purpose)
+.claude/settings.local.json
+
+# env files
+*.env
+!*.env.example

@@ -1,0 +1,24 @@
+## Task tracking — aiwork
+
+Work in this repo is tracked on the aiwork board over MCP, not in files. These
+are events you can watch happen, not judgement calls.
+
+- Before the first file change: `start_session()` + `claim_task()`. Given a
+  dispatch code (`aiwork AIW-7F3K`), call `get_dispatch("AIW-7F3K")` instead.
+- `report_progress(..., kind="action")` the moment one of these happens: tests
+  ran and the result changed, a migration was applied, a build or type-check
+  finished, an area of the work is done, a dependency or config changed, a
+  command failed and the plan changed. One event, one call — never a batch at
+  the end. Not for `ls`, `grep`, `git status`, reading a file, a one-line edit.
+- `finish_task()` the moment the task is done — not when the conversation ends.
+  Close the task you have before you claim another. One open at a time.
+- Work no task on the board covers: `report_unplanned()` when it is done, as
+  its own call.
+- Cannot go on without someone else: `report_progress(..., kind="blocked")`.
+- Reports go in the language the user writes to you, written for a person to
+  read — not a log, not a diff, not a file list.
+- Carry the activity trace: pass unsent lines of `~/.aiwork/journal.ndjson` in
+  `pulses`, then move `~/.aiwork/offset`.
+- Full procedure — read before touching the board: `.claude/skills/aiwork/SKILL.md`
+- Requires `AIWORK_TOKEN` in the environment. Without it every call returns 401:
+  tell the user, do not retry.

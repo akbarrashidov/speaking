@@ -1,0 +1,784 @@
+{
+  "topics": [
+    {
+      "track": "roleplay",
+      "order": 1,
+      "target_structure": "roleplay_cafe_order",
+      "session_mode": "roleplay",
+      "related_structures": [
+        "modal_requests_can_could",
+        "phrase_would_rather"
+      ],
+      "title_uz": "Kafeda buyurtma berish",
+      "title_ru": "Заказ в кафе",
+      "title_en": "Ordering in a cafe",
+      "status": "published",
+      "max_questions": 8,
+      "material": {
+        "rule_uz": "Siz mijozsiz, AI ofitsiant. U rolidan chiqmaydi: menyuni tushuntiradi, savol beradi, hisobni keltiradi. Siz buyurtma berasiz, so'raysiz va oxirigacha olib borasiz.",
+        "rule_ru": "Вы — гость, ИИ — официант. Он не выходит из роли: объясняет меню, задаёт вопросы, приносит счёт. Вы заказываете, спрашиваете и доводите разговор до конца.",
+        "usage_uz": "Vaziyat oson ketmaydi: so'ragan taomingiz tugagan bo'lishi mumkin yoki ofitsiant \"katta yoki kichik?\" deb qayta so'raydi. Bu ataylab — aynan shu paytda siz tayyor gapni emas, o'z gapingizni tuzasiz. Bir og'iz javob yetmaydi.",
+        "usage_ru": "Ситуация не будет идти гладко: заказанного блюда может не оказаться, или официант переспросит «большой или маленький?». Так задумано — именно в этот момент вы строите свою фразу, а не воспроизводите готовую. Односложного ответа не хватит.",
+        "examples": [
+          {
+            "en": "Could I see the menu, please?",
+            "uz": "Menyuni ko'rsam bo'ladimi?",
+            "ru": "Можно посмотреть меню?"
+          },
+          {
+            "en": "I'd like a large coffee and a sandwich.",
+            "uz": "Katta qahva va sendvich bo'lsin.",
+            "ru": "Мне большой кофе и сэндвич."
+          },
+          {
+            "en": "Actually, I'd rather have tea.",
+            "uz": "Aslida, choy bo'lsa yaxshi edi.",
+            "ru": "Вообще-то, я лучше выпью чай."
+          },
+          {
+            "en": "Could we have the bill, please?",
+            "uz": "Hisobni keltirsangiz.",
+            "ru": "Можно счёт, пожалуйста?"
+          }
+        ]
+      },
+      "chunks": [
+        {
+          "text": "for here or to take away",
+          "translation_uz": "shu yerdami yoki olib ketasizmi",
+          "translation_ru": "здесь или с собой"
+        },
+        {
+          "text": "that's all, thanks",
+          "translation_uz": "shu bo'ldi, rahmat",
+          "translation_ru": "это всё, спасибо"
+        },
+        {
+          "text": "could we have the bill",
+          "translation_uz": "hisobni keltirsangiz",
+          "translation_ru": "можно счёт"
+        }
+      ],
+      "questions": [
+        {
+          "question_text": "Imagine you just sat down in a cafe. Ask me for the menu.",
+          "canonical_answer": "Could I see the menu, please?",
+          "answer_variants": [
+            "Can I have the menu, please?"
+          ],
+          "elicitation_note": "Xushmuomala so'rov bilan boshlanadi."
+        },
+        {
+          "question_text": "Order a drink and something to eat.",
+          "canonical_answer": "I'd like a large coffee and a cheese sandwich, please.",
+          "answer_variants": [
+            "Can I have tea and a piece of cake?"
+          ],
+          "elicitation_note": "Ikki narsa bitta gapda."
+        },
+        {
+          "question_text": "Imagine the dish you ordered is finished. Choose something else.",
+          "canonical_answer": "In that case I'd rather have the soup.",
+          "answer_variants": [
+            "Then I'll take the chicken instead."
+          ],
+          "elicitation_note": "To'siqqa javob — yangi tanlov."
+        },
+        {
+          "question_text": "Tell me you have an allergy and ask what is in the dish.",
+          "canonical_answer": "I'm allergic to nuts — could you tell me what is in it?",
+          "answer_variants": [
+            "Does this have milk in it?"
+          ],
+          "elicitation_note": "Ogohlantirish + savol."
+        },
+        {
+          "question_text": "Imagine the coffee is cold. Tell the waiter politely.",
+          "canonical_answer": "Sorry, this coffee is cold — could you change it?",
+          "answer_variants": [
+            "Excuse me, my coffee isn't hot."
+          ],
+          "elicitation_note": "Xushmuomala shikoyat."
+        },
+        {
+          "question_text": "Ask how long the food will take.",
+          "canonical_answer": "How long will the food take?",
+          "answer_variants": [
+            "Could you tell me how long it takes?"
+          ],
+          "elicitation_note": "Vaqt haqida savol."
+        },
+        {
+          "question_text": "Ask for the bill and say how you want to pay.",
+          "canonical_answer": "Could we have the bill, please? I'll pay by card.",
+          "answer_variants": [
+            "The bill, please — cash is fine."
+          ],
+          "elicitation_note": "Ikki qadam: hisob + to'lov."
+        },
+        {
+          "question_text": "Imagine the bill is higher than you expected. Ask about it.",
+          "canonical_answer": "Excuse me, could you check the bill? I think there is a mistake.",
+          "answer_variants": [
+            "What is this extra charge for?"
+          ],
+          "elicitation_note": "Muammoni xushmuomala ko'tarish."
+        }
+      ],
+      "persona_en": "Rustam, a waiter in a small, busy city cafe",
+      "setting_en": "lunch rush, most tables full, you are on your feet",
+      "ambience": "cafe",
+      "voice": "Puck"
+    },
+    {
+      "track": "roleplay",
+      "order": 2,
+      "target_structure": "roleplay_taxi_ride",
+      "session_mode": "roleplay",
+      "related_structures": [
+        "prepositions_of_place",
+        "phrase_it_depends_on"
+      ],
+      "title_uz": "Taksida — manzil va narx",
+      "title_ru": "В такси — адрес и цена",
+      "title_en": "Taking a taxi",
+      "status": "published",
+      "max_questions": 8,
+      "material": {
+        "rule_uz": "Siz yo'lovchisiz, AI haydovchi. U manzilni so'raydi, narx aytadi, yo'lda gaplashadi. Siz manzilni tushuntirasiz va kelishasiz.",
+        "rule_ru": "Вы — пассажир, ИИ — водитель. Он спрашивает адрес, называет цену, разговаривает по дороге. Вы объясняете адрес и договариваетесь.",
+        "usage_uz": "Haydovchi manzilni birinchi martada tushunmasligi mumkin — shunda siz joyni boshqa so'zlar bilan tushuntirishingiz kerak bo'ladi: \"bank yonida\", \"maktabdan keyin\". Aynan shu qayta tushuntirish real hayotda eng ko'p kerak bo'ladigan ko'nikma.",
+        "usage_ru": "Водитель может не понять адрес с первого раза — тогда придётся объяснить место другими словами: «рядом с банком», «после школы». Именно это переобъяснение и есть навык, который в жизни нужен чаще всего.",
+        "examples": [
+          {
+            "en": "Could you take me to the airport?",
+            "uz": "Aeroportga olib bora olasizmi?",
+            "ru": "Вы можете отвезти меня в аэропорт?"
+          },
+          {
+            "en": "It's next to the bank, behind the school.",
+            "uz": "Bank yonida, maktabning orqasida.",
+            "ru": "Это рядом с банком, за школой."
+          },
+          {
+            "en": "How much is it to the centre?",
+            "uz": "Markazga qancha bo'ladi?",
+            "ru": "Сколько до центра?"
+          },
+          {
+            "en": "It depends on the traffic, I think.",
+            "uz": "Menimcha, tirbandlikka bog'liq.",
+            "ru": "Думаю, это зависит от пробок."
+          }
+        ]
+      },
+      "chunks": [
+        {
+          "text": "just here is fine",
+          "translation_uz": "shu yerda to'xtatsangiz bo'ladi",
+          "translation_ru": "здесь можно остановить"
+        },
+        {
+          "text": "keep the change",
+          "translation_uz": "qaytimi kerak emas",
+          "translation_ru": "оставьте сдачу"
+        },
+        {
+          "text": "could you slow down",
+          "translation_uz": "sekinlashtira olasizmi",
+          "translation_ru": "не могли бы вы сбавить скорость"
+        }
+      ],
+      "questions": [
+        {
+          "question_text": "Imagine you get into a taxi. Tell me where you want to go.",
+          "canonical_answer": "Could you take me to the airport, please?",
+          "answer_variants": [
+            "I need to go to the train station."
+          ],
+          "elicitation_note": "Manzil + xushmuomala shakl."
+        },
+        {
+          "question_text": "Imagine I don't know the address. Describe the place another way.",
+          "canonical_answer": "It's next to the bank, behind the big school.",
+          "answer_variants": [
+            "It is near the market, opposite the pharmacy."
+          ],
+          "elicitation_note": "Joy predloglari bilan tushuntirish."
+        },
+        {
+          "question_text": "Ask about the price before we start.",
+          "canonical_answer": "How much is it to the centre?",
+          "answer_variants": [
+            "What is the price to the airport?"
+          ],
+          "elicitation_note": "Narx savoli."
+        },
+        {
+          "question_text": "Imagine the price is too high. Say something.",
+          "canonical_answer": "That's too expensive — could you do it for less?",
+          "answer_variants": [
+            "Last time I paid much less than that."
+          ],
+          "elicitation_note": "Kelishuv."
+        },
+        {
+          "question_text": "Ask me how long the ride will take.",
+          "canonical_answer": "How long will it take to get there?",
+          "answer_variants": [
+            "Could you tell me how long the ride is?"
+          ],
+          "elicitation_note": "Vaqt savoli."
+        },
+        {
+          "question_text": "Imagine the driver is going too fast. Tell him politely.",
+          "canonical_answer": "Could you slow down a little, please?",
+          "answer_variants": [
+            "Please drive a bit slower."
+          ],
+          "elicitation_note": "Xushmuomala iltimos."
+        },
+        {
+          "question_text": "Tell me to stop before the corner.",
+          "canonical_answer": "Just here is fine, before the corner.",
+          "answer_variants": [
+            "Could you stop in front of that shop?"
+          ],
+          "elicitation_note": "Joy ko'rsatish."
+        },
+        {
+          "question_text": "Imagine you have no small money. Sort out the payment.",
+          "canonical_answer": "I only have a big note — can you give me change?",
+          "answer_variants": [
+            "Can I pay by card instead?"
+          ],
+          "elicitation_note": "To'lov muammosini hal qilish."
+        }
+      ],
+      "persona_en": "Bek, a taxi driver who has driven this city for fifteen years",
+      "setting_en": "midday traffic, you are already moving",
+      "ambience": "street",
+      "voice": "Charon"
+    },
+    {
+      "track": "roleplay",
+      "order": 3,
+      "target_structure": "roleplay_shop_return",
+      "session_mode": "roleplay",
+      "related_structures": [
+        "past_simple_questions_negatives",
+        "phrase_to_be_honest"
+      ],
+      "title_uz": "Do'konda mahsulotni qaytarish",
+      "title_ru": "Возврат товара в магазине",
+      "title_en": "Returning something to a shop",
+      "status": "published",
+      "max_questions": 8,
+      "material": {
+        "rule_uz": "Siz xaridorsiz, AI sotuvchi. Siz olgan narsani qaytarmoqchisiz: nima bo'lganini tushuntirishingiz va nima kutayotganingizni aytishingiz kerak.",
+        "rule_ru": "Вы — покупатель, ИИ — продавец. Вы хотите вернуть покупку: нужно объяснить, что случилось, и сказать, чего вы ждёте.",
+        "usage_uz": "Bu vaziyat o'tgan zamon ustida turadi: qachon oldingiz, nima bo'ldi, cheki bormi. Sotuvchi darhol pul qaytarmaydi — siz o'z fikringizni yumshoq, lekin qat'iy aytishingiz kerak bo'ladi.",
+        "usage_ru": "Эта ситуация держится на прошедшем времени: когда купили, что случилось, есть ли чек. Продавец не сразу вернёт деньги — придётся мягко, но твёрдо настоять на своём.",
+        "examples": [
+          {
+            "en": "I bought this shirt yesterday, but it doesn't fit.",
+            "uz": "Bu ko'ylakni kecha oldim, lekin o'lchamim emas.",
+            "ru": "Я купил эту рубашку вчера, но она не подходит."
+          },
+          {
+            "en": "I didn't open the box.",
+            "uz": "Qutini ochmadim.",
+            "ru": "Коробку я не открывал."
+          },
+          {
+            "en": "To be honest, it stopped working after two days.",
+            "uz": "Rostini aytsam, ikki kundan keyin ishlamay qoldi.",
+            "ru": "Честно говоря, через два дня он перестал работать."
+          },
+          {
+            "en": "I'd like a refund, please.",
+            "uz": "Pulni qaytarishingizni so'ragan bo'lardim.",
+            "ru": "Я бы хотел вернуть деньги."
+          }
+        ]
+      },
+      "chunks": [
+        {
+          "text": "here's the receipt",
+          "translation_uz": "mana chek",
+          "translation_ru": "вот чек"
+        },
+        {
+          "text": "it doesn't work",
+          "translation_uz": "ishlamayapti",
+          "translation_ru": "не работает"
+        },
+        {
+          "text": "can I exchange it",
+          "translation_uz": "almashtirsam bo'ladimi",
+          "translation_ru": "можно обменять"
+        }
+      ],
+      "questions": [
+        {
+          "question_text": "Imagine you are at the counter. Explain why you came back.",
+          "canonical_answer": "I bought this shirt yesterday, but it doesn't fit.",
+          "answer_variants": [
+            "I got this phone last week and it stopped working."
+          ],
+          "elicitation_note": "O'tgan zamon + hozirgi muammo."
+        },
+        {
+          "question_text": "Tell me when you bought it and how you paid.",
+          "canonical_answer": "I bought it on Saturday and I paid by card.",
+          "answer_variants": [
+            "I got it two days ago, in cash."
+          ],
+          "elicitation_note": "Aniq vaqt — past simple."
+        },
+        {
+          "question_text": "Imagine I ask if you used it. Answer me.",
+          "canonical_answer": "No, I didn't use it, I only opened the box.",
+          "answer_variants": [
+            "I didn't wear it, the label is still on."
+          ],
+          "elicitation_note": "didn't + fe'l."
+        },
+        {
+          "question_text": "Tell me what exactly went wrong with it.",
+          "canonical_answer": "To be honest, it stopped working after two days.",
+          "answer_variants": [
+            "The zip broke the first time I wore it."
+          ],
+          "elicitation_note": "Muammoni aniq aytish."
+        },
+        {
+          "question_text": "Say what you want: your money back or another one.",
+          "canonical_answer": "I'd like a refund, please, not an exchange.",
+          "answer_variants": [
+            "Can I exchange it for a bigger size?"
+          ],
+          "elicitation_note": "Aniq talab."
+        },
+        {
+          "question_text": "Imagine I say returns are not possible. Insist politely.",
+          "canonical_answer": "I understand, but the shirt was faulty when I bought it.",
+          "answer_variants": [
+            "Could I speak to the manager, please?"
+          ],
+          "elicitation_note": "Yumshoq, lekin qat'iy."
+        },
+        {
+          "question_text": "Imagine you lost the receipt. Explain the situation.",
+          "canonical_answer": "I don't have the receipt, but I paid by card — you can check it.",
+          "answer_variants": [
+            "I lost the receipt, but I have the message from the bank."
+          ],
+          "elicitation_note": "Muqobil yechim taklif qilish."
+        },
+        {
+          "question_text": "Ask how long the refund will take.",
+          "canonical_answer": "How long will the refund take?",
+          "answer_variants": [
+            "Could you tell me when I get the money?"
+          ],
+          "elicitation_note": "Yakuniy savol."
+        }
+      ],
+      "persona_en": "Nilufar, a shop assistant at the returns counter",
+      "setting_en": "end of the day, a queue waiting behind the customer",
+      "ambience": "shop",
+      "voice": "Kore"
+    },
+    {
+      "track": "roleplay",
+      "order": 4,
+      "target_structure": "roleplay_doctor_visit",
+      "session_mode": "roleplay",
+      "related_structures": [
+        "present_perfect_for_since",
+        "phrase_had_better"
+      ],
+      "title_uz": "Shifokorda — shikoyat va maslahat",
+      "title_ru": "У врача — жалобы и совет",
+      "title_en": "At the doctor",
+      "status": "published",
+      "max_questions": 8,
+      "material": {
+        "rule_uz": "Siz bemorsiz, AI shifokor. U nimadan shikoyat qilayotganingizni, qancha vaqtdan beri davom etayotganini so'raydi va maslahat beradi.",
+        "rule_ru": "Вы — пациент, ИИ — врач. Он спрашивает, что вас беспокоит, как давно это длится, и даёт рекомендации.",
+        "usage_uz": "Shifokorning eng birinchi savoli har doim MUDDAT haqida: \"How long have you had it?\" Shuning uchun bu vaziyat \"for\" va \"since\" ustida ishlaydi — \"for three days\", \"since Monday\".",
+        "usage_ru": "Первый вопрос врача всегда о СРОКЕ: «How long have you had it?» Поэтому эта ситуация тренирует «for» и «since» — «for three days», «since Monday».",
+        "examples": [
+          {
+            "en": "I've had a headache for three days.",
+            "uz": "Uch kundan beri boshim og'riyapti.",
+            "ru": "У меня болит голова уже три дня."
+          },
+          {
+            "en": "It started on Monday, after work.",
+            "uz": "Dushanba kuni, ishdan keyin boshlandi.",
+            "ru": "Началось в понедельник, после работы."
+          },
+          {
+            "en": "I haven't slept well since then.",
+            "uz": "O'shandan beri yaxshi uxlamayapman.",
+            "ru": "С тех пор я плохо сплю."
+          },
+          {
+            "en": "You'd better rest for a couple of days.",
+            "uz": "Bir-ikki kun dam olsangiz yaxshi bo'ladi.",
+            "ru": "Вам лучше отдохнуть пару дней."
+          }
+        ]
+      },
+      "chunks": [
+        {
+          "text": "it hurts here",
+          "translation_uz": "shu yeri og'riyapti",
+          "translation_ru": "болит вот здесь"
+        },
+        {
+          "text": "I feel dizzy",
+          "translation_uz": "boshim aylanyapti",
+          "translation_ru": "у меня кружится голова"
+        },
+        {
+          "text": "how long have you had it",
+          "translation_uz": "qancha vaqtdan beri shunday",
+          "translation_ru": "как давно это у вас"
+        }
+      ],
+      "questions": [
+        {
+          "question_text": "Imagine you are in the doctor's room. Tell me what is wrong.",
+          "canonical_answer": "I've had a bad headache for three days.",
+          "answer_variants": [
+            "My back has hurt since last week."
+          ],
+          "elicitation_note": "have had + for/since."
+        },
+        {
+          "question_text": "Tell me exactly when it started.",
+          "canonical_answer": "It started on Monday, after work.",
+          "answer_variants": [
+            "It began three days ago, in the evening."
+          ],
+          "elicitation_note": "Aniq vaqt — past simple."
+        },
+        {
+          "question_text": "Tell me how it has changed since then.",
+          "canonical_answer": "It has got worse since Tuesday.",
+          "answer_variants": [
+            "I haven't slept well since then."
+          ],
+          "elicitation_note": "since + o'zgarish."
+        },
+        {
+          "question_text": "Tell me what medicine you have taken.",
+          "canonical_answer": "I've taken paracetamol twice, but it didn't help much.",
+          "answer_variants": [
+            "I haven't taken anything yet."
+          ],
+          "elicitation_note": "have taken / haven't taken."
+        },
+        {
+          "question_text": "Imagine I ask about your sleep and food. Answer me.",
+          "canonical_answer": "I've slept badly for a week and I haven't eaten much.",
+          "answer_variants": [
+            "I sleep about four hours and eat once a day."
+          ],
+          "elicitation_note": "Ikki jihat bitta javobda."
+        },
+        {
+          "question_text": "Ask me whether it is serious.",
+          "canonical_answer": "Do you think it is serious, doctor?",
+          "answer_variants": [
+            "Could you tell me what it is?"
+          ],
+          "elicitation_note": "Bemorning savoli."
+        },
+        {
+          "question_text": "Imagine I tell you to rest for a week. Explain your problem with that.",
+          "canonical_answer": "To be honest, I can't stop working for a week.",
+          "answer_variants": [
+            "I'd rather take medicine and keep working."
+          ],
+          "elicitation_note": "To'siqqa javob."
+        },
+        {
+          "question_text": "Ask what you should do if it gets worse.",
+          "canonical_answer": "What should I do if it gets worse?",
+          "answer_variants": [
+            "Should I come back next week?"
+          ],
+          "elicitation_note": "should + shart."
+        }
+      ],
+      "persona_en": "Dr Karimova, a family doctor",
+      "setting_en": "a short appointment, ten minutes per patient",
+      "ambience": "clinic",
+      "voice": "Leda"
+    },
+    {
+      "track": "roleplay",
+      "order": 5,
+      "target_structure": "roleplay_hotel_checkin",
+      "session_mode": "roleplay",
+      "related_structures": [
+        "there_is_there_are",
+        "phrase_be_about_to"
+      ],
+      "title_uz": "Mehmonxonada joylashish",
+      "title_ru": "Заселение в отель",
+      "title_en": "Hotel check-in",
+      "status": "published",
+      "max_questions": 8,
+      "material": {
+        "rule_uz": "Siz mehmonsiz, AI qabulxona xodimi. Siz joylashasiz, xona haqida so'raysiz va muammo chiqsa hal qilasiz.",
+        "rule_ru": "Вы — гость, ИИ — сотрудник на ресепшене. Вы заселяетесь, спрашиваете о номере и решаете возникшую проблему.",
+        "usage_uz": "Bu vaziyat \"there is / there are\" ustida ishlaydi: xonada nima bor, nima yo'q. Xodim xonani almashtirishni taklif qilishi yoki \"joy yo'q\" deyishi mumkin — shunda muzokara boshlanadi.",
+        "usage_ru": "Ситуация тренирует «there is / there are»: что есть в номере, чего нет. Сотрудник может предложить другой номер или сказать, что мест нет — и тогда начинаются переговоры.",
+        "examples": [
+          {
+            "en": "I have a reservation for two nights.",
+            "uz": "Ikki kecha uchun joy band qilganman.",
+            "ru": "У меня забронировано на две ночи."
+          },
+          {
+            "en": "Is there wifi in the room?",
+            "uz": "Xonada wifi bormi?",
+            "ru": "В номере есть вайфай?"
+          },
+          {
+            "en": "There isn't any hot water in the bathroom.",
+            "uz": "Hammomda issiq suv yo'q.",
+            "ru": "В ванной нет горячей воды."
+          },
+          {
+            "en": "I'm about to go out — could you keep my bag?",
+            "uz": "Hozir chiqaman — sumkamni saqlab tura olasizmi?",
+            "ru": "Я сейчас выхожу — можете подержать мою сумку?"
+          }
+        ]
+      },
+      "chunks": [
+        {
+          "text": "I have a reservation",
+          "translation_uz": "joy band qilganman",
+          "translation_ru": "у меня бронь"
+        },
+        {
+          "text": "what time is breakfast",
+          "translation_uz": "nonushta soat nechada",
+          "translation_ru": "во сколько завтрак"
+        },
+        {
+          "text": "could you call a taxi",
+          "translation_uz": "taksi chaqira olasizmi",
+          "translation_ru": "не могли бы вызвать такси"
+        }
+      ],
+      "questions": [
+        {
+          "question_text": "Imagine you are at the reception desk. Check in.",
+          "canonical_answer": "Good evening, I have a reservation for two nights.",
+          "answer_variants": [
+            "Hello, I booked a room for tonight."
+          ],
+          "elicitation_note": "Salomlashuv + maqsad."
+        },
+        {
+          "question_text": "Ask about what the room has.",
+          "canonical_answer": "Is there wifi and air conditioning in the room?",
+          "answer_variants": [
+            "Are there two beds in the room?"
+          ],
+          "elicitation_note": "Is there / Are there."
+        },
+        {
+          "question_text": "Ask about breakfast and the checkout time.",
+          "canonical_answer": "What time is breakfast, and when do I have to check out?",
+          "answer_variants": [
+            "Is breakfast included in the price?"
+          ],
+          "elicitation_note": "Ikki savol bitta navbatda."
+        },
+        {
+          "question_text": "Imagine there is no hot water in your room. Report it.",
+          "canonical_answer": "There isn't any hot water in my bathroom.",
+          "answer_variants": [
+            "The shower doesn't work, there is only cold water."
+          ],
+          "elicitation_note": "there isn't + muammo."
+        },
+        {
+          "question_text": "Imagine the room is noisy. Ask for another one.",
+          "canonical_answer": "The room is very noisy — could I have a quieter one?",
+          "answer_variants": [
+            "Is there a room away from the road?"
+          ],
+          "elicitation_note": "Muammo + iltimos."
+        },
+        {
+          "question_text": "Tell me you are going out and ask about your bag.",
+          "canonical_answer": "I'm about to go out — could you keep my bag until the evening?",
+          "answer_variants": [
+            "I'm about to leave, is there a place for luggage?"
+          ],
+          "elicitation_note": "about to + iltimos."
+        },
+        {
+          "question_text": "Ask what there is near the hotel.",
+          "canonical_answer": "Is there a pharmacy or a shop near the hotel?",
+          "answer_variants": [
+            "What is there to see near here?"
+          ],
+          "elicitation_note": "Is there + joy."
+        },
+        {
+          "question_text": "Imagine you want to stay one more night. Arrange it.",
+          "canonical_answer": "Could I stay one more night? How much would that be?",
+          "answer_variants": [
+            "I'd like to add another night, if there is a room."
+          ],
+          "elicitation_note": "Ikki qadam: so'rov + narx."
+        }
+      ],
+      "persona_en": "Sardor, a receptionist at a mid-size hotel",
+      "setting_en": "late evening, one other guest waiting",
+      "ambience": "hotel",
+      "voice": "Orus"
+    },
+    {
+      "track": "roleplay",
+      "order": 6,
+      "target_structure": "roleplay_job_interview",
+      "session_mode": "roleplay",
+      "related_structures": [
+        "present_perfect_experience",
+        "phrase_look_forward_to"
+      ],
+      "title_uz": "Ish suhbati",
+      "title_ru": "Собеседование",
+      "title_en": "Job interview",
+      "status": "published",
+      "max_questions": 8,
+      "material": {
+        "rule_uz": "Siz nomzodsiz, AI ish beruvchi. U tajribangizni, kuchli tomonlaringizni so'raydi va noqulay savol ham beradi. Siz to'liq gaplar bilan javob berasiz.",
+        "rule_ru": "Вы — кандидат, ИИ — работодатель. Он спрашивает об опыте, о сильных сторонах и задаёт неудобный вопрос. Вы отвечаете полными предложениями.",
+        "usage_uz": "Tajriba haqida gapirganda ikki zamon almashib turadi: umumiy tajriba — \"I have worked...\", aniq voqea — \"In 2021 I moved...\". Suhbat oxirida \"I look forward to hearing from you\" deyish deyarli standart.",
+        "usage_ru": "Когда говорите об опыте, чередуются два времени: общий опыт — «I have worked...», конкретный случай — «In 2021 I moved...». В конце собеседования почти стандартно говорят «I look forward to hearing from you».",
+        "examples": [
+          {
+            "en": "I have worked as a driver for five years.",
+            "uz": "Besh yildan beri haydovchi bo'lib ishlayman.",
+            "ru": "Я работаю водителем пять лет."
+          },
+          {
+            "en": "I've never managed a team, but I learn fast.",
+            "uz": "Hech jamoa boshqarmaganman, lekin tez o'rganaman.",
+            "ru": "Я никогда не руководил командой, но быстро учусь."
+          },
+          {
+            "en": "In 2022 I moved to a bigger company.",
+            "uz": "2022-yilda kattaroq kompaniyaga o'tdim.",
+            "ru": "В 2022 году я перешёл в более крупную компанию."
+          },
+          {
+            "en": "I look forward to hearing from you.",
+            "uz": "Javobingizni kutaman.",
+            "ru": "Жду вашего ответа."
+          }
+        ]
+      },
+      "chunks": [
+        {
+          "text": "tell me about yourself",
+          "translation_uz": "o'zingiz haqingizda gapirib bering",
+          "translation_ru": "расскажите о себе"
+        },
+        {
+          "text": "I'm good with people",
+          "translation_uz": "odamlar bilan yaxshi ishlayman",
+          "translation_ru": "я хорошо работаю с людьми"
+        },
+        {
+          "text": "when can I start",
+          "translation_uz": "qachondan boshlasam bo'ladi",
+          "translation_ru": "когда я могу начать"
+        }
+      ],
+      "questions": [
+        {
+          "question_text": "Imagine the interview starts. Tell me about yourself.",
+          "canonical_answer": "I have worked as a driver for five years and I know the city well.",
+          "answer_variants": [
+            "I've been a teacher since 2019."
+          ],
+          "elicitation_note": "have worked + for/since."
+        },
+        {
+          "question_text": "Tell me why you left your last job.",
+          "canonical_answer": "I left because the company moved to another city.",
+          "answer_variants": [
+            "I wanted more responsibility, so I resigned last month."
+          ],
+          "elicitation_note": "Aniq o'tmish — past simple."
+        },
+        {
+          "question_text": "Tell me about the biggest thing you have done at work.",
+          "canonical_answer": "I have trained four new drivers, and that was the hardest part.",
+          "answer_variants": [
+            "I've organised a big event for two hundred people."
+          ],
+          "elicitation_note": "have + V3."
+        },
+        {
+          "question_text": "Imagine I say you have no experience with our system. Answer that.",
+          "canonical_answer": "That's true, I've never used it, but I learn new systems quickly.",
+          "answer_variants": [
+            "I haven't worked with it, but I used a similar one."
+          ],
+          "elicitation_note": "Noqulay savolga javob."
+        },
+        {
+          "question_text": "Tell me about a mistake you have made and what you learned.",
+          "canonical_answer": "I once sent a wrong report, and since then I always check twice.",
+          "answer_variants": [
+            "I've made a big mistake with a client, and I learned to ask first."
+          ],
+          "elicitation_note": "Xato + xulosa."
+        },
+        {
+          "question_text": "Ask me two questions about this job.",
+          "canonical_answer": "Could you tell me about the team? And what are the working hours?",
+          "answer_variants": [
+            "What would my first month look like?"
+          ],
+          "elicitation_note": "Nomzodning savollari."
+        },
+        {
+          "question_text": "Tell me what salary you expect and why.",
+          "canonical_answer": "I expect around eight million, because I have five years of experience.",
+          "answer_variants": [
+            "It depends on the responsibilities, but I have a number in mind."
+          ],
+          "elicitation_note": "Raqam + sabab."
+        },
+        {
+          "question_text": "Imagine the interview is finishing. Close it politely.",
+          "canonical_answer": "Thank you for your time, I look forward to hearing from you.",
+          "answer_variants": [
+            "Thanks a lot — when can I start if you choose me?"
+          ],
+          "elicitation_note": "look forward to + -ing."
+        }
+      ],
+      "persona_en": "Aziz, a hiring manager",
+      "setting_en": "a first interview, thirty minutes, five more candidates today",
+      "ambience": "office",
+      "voice": "Fenrir"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "level": "A1",
+  "notes": "Juda oddiy lug'at, qisqa gaplar. Savol o'quvchining o'z hayoti haqida bo'lsin.",
+  "examples": [
+    {
+      "target_structure": "present_simple_affirmative",
+      "question_text": "What do you do every morning?",
+      "canonical_answer": "I drink tea every morning.",
+      "answer_variants": ["I make breakfast every morning."],
+      "elicitation_note": "Learner must produce a full present simple sentence with 'I'."
+    },
+    {
+      "target_structure": "past_simple_affirmative",
+      "question_text": "What did you do yesterday?",
+      "canonical_answer": "I visited my friend yesterday.",
+      "answer_variants": ["I worked all day yesterday."],
+      "elicitation_note": "Past form is the target; correct 'I go' to 'I went'."
+    },
+    {
+      "target_structure": "there_is_there_are",
+      "question_text": "Tell me about your room.",
+      "canonical_answer": "There is a bed in my room.",
+      "answer_variants": ["There are two chairs in my room."],
+      "elicitation_note": "Answer must start with There is / There are."
+    },
+    {
+      "target_structure": "can_ability",
+      "question_text": "What can you do well?",
+      "canonical_answer": "I can cook plov well.",
+      "answer_variants": ["I can swim very well."],
+      "elicitation_note": "Target: I can + verb. Reject a bare noun."
+    }
+  ]
+}

@@ -1,0 +1,718 @@
+{
+  "topics": [
+    {
+      "track": "phrases",
+      "order": 1,
+      "target_structure": "phrase_to_be_honest",
+      "focus_phrase": "to be honest",
+      "related_structures": ["linking_words_opinion"],
+      "title_uz": "To be honest — rostini aytsam",
+      "title_ru": "To be honest — честно говоря",
+      "title_en": "To be honest",
+      "status": "published",
+      "max_questions": 10,
+      "material": {
+        "rule_uz": "Fikrni ochiq aytishdan oldin qo'shiladi: \"To be honest, I don't like it.\" Gapning boshida ham, oxirida ham turadi va vergul bilan ajratiladi.",
+        "rule_ru": "Ставится перед откровенным мнением: «To be honest, I don't like it». Может быть и в начале, и в конце предложения, отделяется запятой.",
+        "usage_uz": "Kimdir fikringizni so'raganda va javob unga yoqmasligi mumkin bo'lganda ishlatiladi — u \"dilimdagini aytsam\" degan yumshatgich. Do'st bilan ham, ishda ham tabiiy; rasmiy xatda esa \"in my view\" ma'qulroq. Diqqat: \"honestly\" ham shu ma'noda, lekin u ko'proq ajablanish yoki jahlni bildiradi.",
+        "usage_ru": "Используется, когда у вас спросили мнение и ответ может не понравиться — это мягкое «скажу как есть». Естественно и с друзьями, и на работе; в официальном письме лучше «in my view». Внимание: «honestly» имеет тот же смысл, но чаще выражает удивление или раздражение.",
+        "examples": [
+          {
+            "en": "To be honest, I didn't like the film.",
+            "uz": "Rostini aytsam, film menga yoqmadi.",
+            "ru": "Честно говоря, фильм мне не понравился."
+          },
+          {
+            "en": "To be honest, I'm very tired today.",
+            "uz": "Rostini aytsam, bugun juda charchadim.",
+            "ru": "Честно говоря, я сегодня очень устал."
+          },
+          {
+            "en": "It was too expensive, to be honest.",
+            "uz": "Rostini aytsam, juda qimmat edi.",
+            "ru": "Честно говоря, это было слишком дорого."
+          },
+          {
+            "en": "To be honest, I don't know the answer.",
+            "uz": "Rostini aytsam, javobini bilmayman.",
+            "ru": "Честно говоря, я не знаю ответа."
+          }
+        ]
+      },
+      "chunks": [
+        {
+          "text": "to tell the truth",
+          "translation_uz": "haqiqatni aytsam",
+          "translation_ru": "по правде говоря"
+        },
+        {
+          "text": "if I'm honest with you",
+          "translation_uz": "sizga ochig'ini aytsam",
+          "translation_ru": "если честно с вами"
+        },
+        {
+          "text": "I have to admit",
+          "translation_uz": "tan olishim kerak",
+          "translation_ru": "должен признать"
+        }
+      ],
+      "questions": [
+        {
+          "question_text": "Tell me what you really think about your city.",
+          "canonical_answer": "To be honest, my city is too noisy for me.",
+          "answer_variants": ["To be honest, I love it here."],
+          "elicitation_note": "Javob 'to be honest' bilan boshlansin."
+        },
+        {
+          "question_text": "What do you think about learning grammar?",
+          "canonical_answer": "To be honest, grammar is boring for me.",
+          "answer_variants": ["To be honest, I need it more than speaking."],
+          "elicitation_note": "Fikr + to be honest."
+        },
+        {
+          "question_text": "Tell me about a gift you didn't like.",
+          "canonical_answer": "To be honest, I didn't like the shirt my friend gave me.",
+          "answer_variants": ["The gift was nice, but too small, to be honest."],
+          "elicitation_note": "Ibora oxirida ham bo'lishi mumkin."
+        },
+        {
+          "question_text": "What is your honest opinion about social media?",
+          "canonical_answer": "To be honest, I spend too much time on it.",
+          "answer_variants": ["To be honest, it helps me a lot."],
+          "elicitation_note": "to be honest + fikr."
+        },
+        {
+          "question_text": "Tell me how you really feel about your job.",
+          "canonical_answer": "To be honest, I like my colleagues more than the work.",
+          "answer_variants": ["I am tired of it, to be honest."],
+          "elicitation_note": "Ibora bilan ochiq fikr."
+        },
+        {
+          "question_text": "Imagine a friend cooked something you didn't like. What do you say?",
+          "canonical_answer": "To be honest, it was a bit salty for me.",
+          "answer_variants": ["To be honest, I prefer less spicy food."],
+          "elicitation_note": "Yumshoq inkor — to be honest."
+        },
+        {
+          "question_text": "Tell me one thing you don't like about your English.",
+          "canonical_answer": "To be honest, my pronunciation is not good yet.",
+          "answer_variants": ["To be honest, I forget words when I speak."],
+          "elicitation_note": "O'zi haqida rost fikr."
+        },
+        {
+          "question_text": "What do you think about working at the weekend?",
+          "canonical_answer": "To be honest, I hate working on Sundays.",
+          "answer_variants": ["To be honest, I don't mind it."],
+          "elicitation_note": "to be honest + hate/don't mind."
+        },
+        {
+          "question_text": "Tell me about a popular thing you don't understand.",
+          "canonical_answer": "To be honest, I don't understand why people watch football all night.",
+          "answer_variants": ["To be honest, I never understood that game."],
+          "elicitation_note": "Uzunroq gapda ibora."
+        },
+        {
+          "question_text": "Imagine your friend asks about his new car. Give an honest answer.",
+          "canonical_answer": "To be honest, the colour is a bit strange.",
+          "answer_variants": ["It looks great, to be honest."],
+          "elicitation_note": "Ibora + xushmuomala tanqid."
+        }
+      ]
+    },
+    {
+      "track": "phrases",
+      "order": 2,
+      "target_structure": "phrase_it_depends_on",
+      "focus_phrase": "it depends on",
+      "related_structures": ["indirect_questions"],
+      "title_uz": "It depends on — vaziyatga qarab",
+      "title_ru": "It depends on — смотря по обстоятельствам",
+      "title_en": "It depends on",
+      "status": "published",
+      "max_questions": 10,
+      "material": {
+        "rule_uz": "Keyin ot yoki -ing keladi: \"It depends on the weather\", \"It depends on how much it costs\". Predlog ON tushib qolmaydi — \"depends from\" degan shakl yo'q.",
+        "rule_ru": "После него идёт существительное или -ing: «It depends on the weather», «It depends on how much it costs». Предлог ON не выпадает — формы «depends from» не существует.",
+        "usage_uz": "Savolga \"ha\" yoki \"yo'q\" deb bir og'iz javob bermaslik kerak bo'lganda ishlatiladi: javob shartga bog'liq. Suhbatda juda tez-tez uchraydi va aynan shu bir gap sizni \"tayyor javobli\" odam qilib ko'rsatadi. Ko'pincha davomi bilan aytiladi: \"It depends on the day — usually I walk, but if it rains I take a bus.\"",
+        "usage_ru": "Используется, когда нельзя ответить односложно «да» или «нет»: ответ зависит от условия. В речи встречается очень часто, и именно эта фраза делает ваш ответ живым. Обычно продолжают объяснением: «It depends on the day — usually I walk, but if it rains I take a bus».",
+        "examples": [
+          {
+            "en": "It depends on the weather.",
+            "uz": "Bu havoga bog'liq.",
+            "ru": "Это зависит от погоды."
+          },
+          {
+            "en": "It depends on how much free time I have.",
+            "uz": "Qancha bo'sh vaqtim borligiga bog'liq.",
+            "ru": "Зависит от того, сколько у меня свободного времени."
+          },
+          {
+            "en": "It depends on my mood.",
+            "uz": "Kayfiyatimga bog'liq.",
+            "ru": "Зависит от моего настроения."
+          },
+          {
+            "en": "It depends on working late or not.",
+            "uz": "Kech ishlash-ishlamasligimga bog'liq.",
+            "ru": "Зависит от того, работаю я поздно или нет."
+          }
+        ]
+      },
+      "chunks": [
+        {
+          "text": "it depends",
+          "translation_uz": "qanday deysiz, holatga qarab",
+          "translation_ru": "как получится, смотря по обстоятельствам"
+        },
+        {
+          "text": "that depends on you",
+          "translation_uz": "bu sizga bog'liq",
+          "translation_ru": "это зависит от вас"
+        },
+        {
+          "text": "depending on the day",
+          "translation_uz": "kunga qarab",
+          "translation_ru": "в зависимости от дня"
+        }
+      ],
+      "questions": [
+        {
+          "question_text": "Tell me how you get to work in the morning.",
+          "canonical_answer": "It depends on the weather — usually I walk, but I take a bus when it rains.",
+          "answer_variants": ["It depends on the time, sometimes I take a taxi."],
+          "elicitation_note": "It depends on + izoh."
+        },
+        {
+          "question_text": "Tell me when you usually go to bed.",
+          "canonical_answer": "It depends on my work, sometimes at ten and sometimes at one.",
+          "answer_variants": ["It depends on how tired I am."],
+          "elicitation_note": "It depends on + ot yoki wh-gap."
+        },
+        {
+          "question_text": "Tell me where you like to spend your holidays.",
+          "canonical_answer": "It depends on the money I have that year.",
+          "answer_variants": ["It depends on who I travel with."],
+          "elicitation_note": "It depends on + ot."
+        },
+        {
+          "question_text": "What do you eat for lunch?",
+          "canonical_answer": "It depends on the day, at work I eat soup and at home rice.",
+          "answer_variants": ["It depends on how much time I have."],
+          "elicitation_note": "Ibora + ikki variant."
+        },
+        {
+          "question_text": "Tell me if you prefer studying in the morning or in the evening.",
+          "canonical_answer": "It depends on my schedule, but usually the evening is better.",
+          "answer_variants": ["It depends on how early I wake up."],
+          "elicitation_note": "Tanlov savoliga 'it depends on' bilan javob."
+        },
+        {
+          "question_text": "Tell me how long it takes you to get to the centre.",
+          "canonical_answer": "It depends on the traffic, from twenty minutes to one hour.",
+          "answer_variants": ["It depends on the time of day."],
+          "elicitation_note": "It depends on + traffic/time."
+        },
+        {
+          "question_text": "Imagine I ask you to help me on Saturday. What do you answer?",
+          "canonical_answer": "It depends on my plans, let me check first.",
+          "answer_variants": ["It depends on what time you need me."],
+          "elicitation_note": "It depends on + wh-gap."
+        },
+        {
+          "question_text": "Tell me whether you watch films with subtitles.",
+          "canonical_answer": "It depends on the film — for fast speech I need subtitles.",
+          "answer_variants": ["It depends on how difficult the language is."],
+          "elicitation_note": "Ibora + sabab."
+        },
+        {
+          "question_text": "What do you wear to work?",
+          "canonical_answer": "It depends on the season, in summer a shirt and in winter a jacket.",
+          "answer_variants": ["It depends on the meetings I have."],
+          "elicitation_note": "It depends on + fasl."
+        },
+        {
+          "question_text": "Tell me if you would move to another country.",
+          "canonical_answer": "It depends on the work and on my family.",
+          "answer_variants": ["It depends on where exactly it is."],
+          "elicitation_note": "Ikki narsaga bog'liqlik: on ... and on ..."
+        }
+      ]
+    },
+    {
+      "track": "phrases",
+      "order": 3,
+      "target_structure": "phrase_look_forward_to",
+      "focus_phrase": "look forward to + -ing",
+      "related_structures": ["verb_ing_vs_infinitive"],
+      "title_uz": "Look forward to — intiqlik bilan kutmoq",
+      "title_ru": "Look forward to — с нетерпением ждать",
+      "title_en": "Look forward to",
+      "status": "published",
+      "max_questions": 10,
+      "material": {
+        "rule_uz": "to dan keyin fe'l -ing shaklida keladi: \"I look forward to seeing you\". \"look forward to see\" — eng ko'p uchraydigan xato. Hozirgi holat uchun \"I'm looking forward to...\" ham to'g'ri.",
+        "rule_ru": "После to глагол стоит с -ing: «I look forward to seeing you». «look forward to see» — самая частая ошибка. Для текущего состояния подходит и «I'm looking forward to...».",
+        "usage_uz": "Yaqinlashib kelayotgan yaxshi voqea haqida: uchrashuv, safar, bayram. Ish xatlarining oxirida deyarli standart: \"I look forward to hearing from you\" — javobingizni kutaman. Do'st bilan gapirganda esa qisqartirilgan \"I'm looking forward to it\" tabiiyroq eshitiladi.",
+        "usage_ru": "О хорошем событии, которое скоро наступит: встреча, поездка, праздник. В деловых письмах почти стандарт: «I look forward to hearing from you» — жду вашего ответа. В разговоре с друзьями естественнее короткое «I'm looking forward to it».",
+        "examples": [
+          {
+            "en": "I look forward to seeing you.",
+            "uz": "Sizni ko'rishni intiqlik bilan kutaman.",
+            "ru": "С нетерпением жду встречи с вами."
+          },
+          {
+            "en": "I'm looking forward to the weekend.",
+            "uz": "Dam olish kunlarini intiq kutyapman.",
+            "ru": "С нетерпением жду выходных."
+          },
+          {
+            "en": "She is looking forward to starting her new job.",
+            "uz": "U yangi ishni boshlashni intiq kutyapti.",
+            "ru": "Она с нетерпением ждёт начала новой работы."
+          },
+          {
+            "en": "I look forward to hearing from you.",
+            "uz": "Javobingizni kutaman.",
+            "ru": "Жду вашего ответа."
+          }
+        ]
+      },
+      "chunks": [
+        {
+          "text": "I can't wait",
+          "translation_uz": "kutishga chidayolmayman",
+          "translation_ru": "не могу дождаться"
+        },
+        {
+          "text": "looking forward to it",
+          "translation_uz": "buni intiq kutyapman",
+          "translation_ru": "с нетерпением этого жду"
+        },
+        {
+          "text": "see you soon",
+          "translation_uz": "tez orada ko'rishguncha",
+          "translation_ru": "до скорой встречи"
+        }
+      ],
+      "questions": [
+        {
+          "question_text": "Tell me what you are looking forward to this month.",
+          "canonical_answer": "I am looking forward to visiting my parents this month.",
+          "answer_variants": ["I look forward to finishing this project."],
+          "elicitation_note": "look forward to + -ing."
+        },
+        {
+          "question_text": "What part of the weekend do you enjoy most?",
+          "canonical_answer": "I look forward to sleeping late on Sunday.",
+          "answer_variants": ["I'm looking forward to seeing my friends."],
+          "elicitation_note": "-ing shakli majburiy."
+        },
+        {
+          "question_text": "Tell me about a trip you are planning.",
+          "canonical_answer": "I am looking forward to travelling to Turkey in summer.",
+          "answer_variants": ["I look forward to seeing the sea again."],
+          "elicitation_note": "travelling — -ing."
+        },
+        {
+          "question_text": "Imagine you are writing to a company. How do you finish the letter?",
+          "canonical_answer": "I look forward to hearing from you soon.",
+          "answer_variants": ["I look forward to meeting you next week."],
+          "elicitation_note": "Rasmiy shakl: hearing from you."
+        },
+        {
+          "question_text": "Tell me what your family looks forward to every year.",
+          "canonical_answer": "My family looks forward to celebrating Navruz together.",
+          "answer_variants": ["They look forward to seeing all the relatives."],
+          "elicitation_note": "Uchinchi shaxs: looks forward to."
+        },
+        {
+          "question_text": "What are you looking forward to in your English?",
+          "canonical_answer": "I am looking forward to speaking without long pauses.",
+          "answer_variants": ["I look forward to understanding films."],
+          "elicitation_note": "speaking — -ing."
+        },
+        {
+          "question_text": "Tell me about the next holiday you are waiting for.",
+          "canonical_answer": "I am looking forward to having a week off in September.",
+          "answer_variants": ["I look forward to resting at home."],
+          "elicitation_note": "having — -ing."
+        },
+        {
+          "question_text": "Imagine your friend invited you to dinner. What do you write back?",
+          "canonical_answer": "Thank you, I am looking forward to coming.",
+          "answer_variants": ["I look forward to trying your plov."],
+          "elicitation_note": "coming / trying."
+        },
+        {
+          "question_text": "Tell me what children in your family look forward to.",
+          "canonical_answer": "The children look forward to getting presents.",
+          "answer_variants": ["They are looking forward to going to the park."],
+          "elicitation_note": "getting / going."
+        },
+        {
+          "question_text": "Tell me one thing at work you are looking forward to.",
+          "canonical_answer": "I am looking forward to working with the new team.",
+          "answer_variants": ["I look forward to finishing this report."],
+          "elicitation_note": "working / finishing."
+        }
+      ]
+    },
+    {
+      "track": "phrases",
+      "order": 4,
+      "target_structure": "phrase_be_about_to",
+      "focus_phrase": "be about to + verb",
+      "related_structures": ["going_to_future_plans"],
+      "title_uz": "Be about to — hozir bo'lay deb turgan ish",
+      "title_ru": "Be about to — вот-вот произойдёт",
+      "title_en": "Be about to",
+      "status": "published",
+      "max_questions": 10,
+      "material": {
+        "rule_uz": "am/is/are about to + fe'l asosiy shakli: \"I am about to leave\" — hozir chiqaman, shu daqiqada. O'tgan zamon uchun was/were: \"I was about to call you\".",
+        "rule_ru": "am/is/are about to + начальная форма глагола: «I am about to leave» — вот-вот выхожу, сию минуту. Для прошедшего — was/were: «I was about to call you».",
+        "usage_uz": "going to bilan farqi vaqtda: going to — reja (bugun, ertaga), about to — bir-ikki daqiqadan keyin. Telefonda va eshik oldida eng ko'p ishlatiladi: \"I can't talk, I'm about to go into a meeting\". \"I was about to...\" esa \"aynan shu payt qilmoqchi edim\" degani va bahonada juda asqotadi.",
+        "usage_ru": "Отличие от going to во времени: going to — план (сегодня, завтра), about to — через минуту-две. Чаще всего звучит по телефону и в дверях: «I can't talk, I'm about to go into a meeting». А «I was about to...» значит «как раз собирался» и очень выручает в оправданиях.",
+        "examples": [
+          {
+            "en": "I am about to leave the house.",
+            "uz": "Hozir uydan chiqaman.",
+            "ru": "Я вот-вот выхожу из дома."
+          },
+          {
+            "en": "The film is about to start.",
+            "uz": "Film boshlanay deb turibdi.",
+            "ru": "Фильм сейчас начнётся."
+          },
+          {
+            "en": "I was about to call you.",
+            "uz": "Sizga qo'ng'iroq qilmoqchi edim.",
+            "ru": "Я как раз собирался вам звонить."
+          },
+          {
+            "en": "We are about to have dinner.",
+            "uz": "Hozir kechki ovqatga o'tiramiz.",
+            "ru": "Мы сейчас будем ужинать."
+          }
+        ]
+      },
+      "chunks": [
+        {
+          "text": "I'm about to go out",
+          "translation_uz": "hozir chiqaman",
+          "translation_ru": "я сейчас выхожу"
+        },
+        {
+          "text": "just about to",
+          "translation_uz": "aynan hozir",
+          "translation_ru": "как раз вот-вот"
+        },
+        {
+          "text": "in a minute",
+          "translation_uz": "bir daqiqadan keyin",
+          "translation_ru": "через минуту"
+        }
+      ],
+      "questions": [
+        {
+          "question_text": "Tell me what you are about to do after this lesson.",
+          "canonical_answer": "I am about to have dinner with my family.",
+          "answer_variants": ["I'm about to go to bed."],
+          "elicitation_note": "am about to + fe'l."
+        },
+        {
+          "question_text": "Imagine your phone rings when you are leaving. What do you say?",
+          "canonical_answer": "Sorry, I am about to leave, can I call you later?",
+          "answer_variants": ["I'm about to go out, I'll call you back."],
+          "elicitation_note": "Real vaziyatda ibora."
+        },
+        {
+          "question_text": "Tell me about a time you were about to do something and stopped.",
+          "canonical_answer": "I was about to buy the tickets, but the price changed.",
+          "answer_variants": ["I was about to send the message and deleted it."],
+          "elicitation_note": "was about to — o'tgan zamon."
+        },
+        {
+          "question_text": "What is about to change in your life?",
+          "canonical_answer": "I am about to start a new course next week.",
+          "answer_variants": ["My brother is about to get married."],
+          "elicitation_note": "is about to (uchinchi shaxs)."
+        },
+        {
+          "question_text": "Imagine your friend calls at the wrong moment. Tell him.",
+          "canonical_answer": "I was about to go into a meeting, let's talk in an hour.",
+          "answer_variants": ["I'm about to eat, call me after."],
+          "elicitation_note": "was/am about to."
+        },
+        {
+          "question_text": "Tell me what happens in your house at seven in the morning.",
+          "canonical_answer": "Everybody is about to leave and the kitchen is full.",
+          "answer_variants": ["My children are about to go to school."],
+          "elicitation_note": "are about to."
+        },
+        {
+          "question_text": "Tell me about the last time you were about to be late.",
+          "canonical_answer": "Yesterday I was about to miss the bus, so I ran.",
+          "answer_variants": ["I was about to be late for work."],
+          "elicitation_note": "was about to + natija."
+        },
+        {
+          "question_text": "Imagine the rain starts and you are outside. What do you say?",
+          "canonical_answer": "It is about to rain, let's go inside.",
+          "answer_variants": ["I'm about to get wet."],
+          "elicitation_note": "It is about to."
+        },
+        {
+          "question_text": "Tell me what your team at work is about to finish.",
+          "canonical_answer": "We are about to finish a big project this week.",
+          "answer_variants": ["They are about to open a new office."],
+          "elicitation_note": "are about to."
+        },
+        {
+          "question_text": "Tell me about a decision you are about to make.",
+          "canonical_answer": "I am about to decide whether I change my job.",
+          "answer_variants": ["I'm about to choose a new phone."],
+          "elicitation_note": "am about to + decide/choose."
+        }
+      ]
+    },
+    {
+      "track": "phrases",
+      "order": 5,
+      "target_structure": "phrase_would_rather",
+      "focus_phrase": "would rather + verb",
+      "related_structures": ["would_like_offers"],
+      "title_uz": "Would rather — afzal ko'rish",
+      "title_ru": "Would rather — предпочитать",
+      "title_en": "Would rather",
+      "status": "published",
+      "max_questions": 10,
+      "material": {
+        "rule_uz": "Fe'l TO'SIZ keladi: \"I would rather stay at home\" (to stay emas). Qisqartmasi \"I'd rather\", inkori \"I'd rather not\". Ikki variantni solishtirganda than: \"I'd rather walk than wait\".",
+        "rule_ru": "Глагол идёт БЕЗ to: «I would rather stay at home» (не to stay). Сокращение — «I'd rather», отрицание — «I'd rather not». При сравнении двух вариантов — than: «I'd rather walk than wait».",
+        "usage_uz": "Tanlov berilganda o'z xohishini xushmuomala bildirish uchun: \"I want\" quruq eshitiladi, \"I'd rather\" esa yumshoq. \"I'd rather not\" — sababini aytmasdan xushmuomala rad etish, bu juda asqotadi. E'tibor bering: prefer bilan aralashtirmang — \"I prefer tea\" (umuman), \"I'd rather have tea\" (hozir, shu holatda).",
+        "usage_ru": "Чтобы вежливо выразить своё предпочтение, когда предлагают выбор: «I want» звучит резко, «I'd rather» — мягко. «I'd rather not» — вежливый отказ без объяснения причины, очень полезная форма. Не путайте с prefer: «I prefer tea» (вообще), «I'd rather have tea» (сейчас, в этой ситуации).",
+        "examples": [
+          {
+            "en": "I would rather stay at home tonight.",
+            "uz": "Bugun kechqurun uyda qolsam yaxshi.",
+            "ru": "Сегодня вечером я лучше останусь дома."
+          },
+          {
+            "en": "I'd rather not talk about it.",
+            "uz": "Bu haqda gaplashmasam devdim.",
+            "ru": "Я бы предпочёл об этом не говорить."
+          },
+          {
+            "en": "I'd rather walk than wait for the bus.",
+            "uz": "Avtobus kutgandan piyoda ketaman.",
+            "ru": "Я лучше пойду пешком, чем буду ждать автобус."
+          },
+          {
+            "en": "She would rather work from home.",
+            "uz": "U uyda ishlashni afzal ko'radi.",
+            "ru": "Она предпочла бы работать из дома."
+          }
+        ]
+      },
+      "chunks": [
+        {
+          "text": "I'd rather not",
+          "translation_uz": "yo'q desam devdim",
+          "translation_ru": "лучше не буду"
+        },
+        {
+          "text": "I'd rather have tea",
+          "translation_uz": "choy bo'lsa yaxshi edi",
+          "translation_ru": "я лучше выпью чай"
+        },
+        {
+          "text": "if you don't mind",
+          "translation_uz": "agar qarshi bo'lmasangiz",
+          "translation_ru": "если вы не против"
+        }
+      ],
+      "questions": [
+        {
+          "question_text": "Imagine I invite you to a loud party tonight. Tell me your choice.",
+          "canonical_answer": "Thank you, but I would rather stay at home tonight.",
+          "answer_variants": ["I'd rather meet in a quiet cafe."],
+          "elicitation_note": "would rather + to'siz fe'l."
+        },
+        {
+          "question_text": "Tell me whether you prefer tea or coffee right now.",
+          "canonical_answer": "I would rather have tea than coffee.",
+          "answer_variants": ["I'd rather drink cold water."],
+          "elicitation_note": "would rather ... than."
+        },
+        {
+          "question_text": "Imagine your boss offers you Saturday work for extra money. Answer him.",
+          "canonical_answer": "I would rather not work on Saturday, if you don't mind.",
+          "answer_variants": ["I'd rather take the money next month."],
+          "elicitation_note": "I'd rather not — xushmuomala rad."
+        },
+        {
+          "question_text": "Tell me how you would rather spend a free day.",
+          "canonical_answer": "I would rather spend it in the mountains than in the city.",
+          "answer_variants": ["I'd rather sleep and read all day."],
+          "elicitation_note": "would rather + spend."
+        },
+        {
+          "question_text": "Imagine a friend asks a personal question. Refuse politely.",
+          "canonical_answer": "I'd rather not answer that question.",
+          "answer_variants": ["I would rather talk about something else."],
+          "elicitation_note": "I'd rather not."
+        },
+        {
+          "question_text": "Tell me whether you would rather live in a house or a flat.",
+          "canonical_answer": "I would rather live in a house with a small garden.",
+          "answer_variants": ["I'd rather have a flat in the centre."],
+          "elicitation_note": "would rather live."
+        },
+        {
+          "question_text": "Tell me how your family would rather travel: by car or by train.",
+          "canonical_answer": "My family would rather travel by train than by car.",
+          "answer_variants": ["They'd rather go by car because of the children."],
+          "elicitation_note": "Uchinchi shaxs + than."
+        },
+        {
+          "question_text": "Imagine someone offers you a job in another city. Tell me your answer.",
+          "canonical_answer": "I would rather stay near my family.",
+          "answer_variants": ["I'd rather move if the salary is good."],
+          "elicitation_note": "would rather stay/move."
+        },
+        {
+          "question_text": "Tell me what you would rather do than watch TV in the evening.",
+          "canonical_answer": "I would rather walk outside than watch TV.",
+          "answer_variants": ["I'd rather call a friend."],
+          "elicitation_note": "than + fe'l."
+        },
+        {
+          "question_text": "Imagine we can speak Uzbek or English in this lesson. Tell me your choice.",
+          "canonical_answer": "I would rather speak English, even if I make mistakes.",
+          "answer_variants": ["I'd rather use English all the time."],
+          "elicitation_note": "would rather speak."
+        }
+      ]
+    },
+    {
+      "track": "phrases",
+      "order": 6,
+      "target_structure": "phrase_had_better",
+      "focus_phrase": "had better + verb",
+      "related_structures": ["modal_advice_should"],
+      "title_uz": "Had better — shunday qilgan ma'qul",
+      "title_ru": "Had better — лучше сделать так",
+      "title_en": "Had better",
+      "status": "published",
+      "max_questions": 10,
+      "material": {
+        "rule_uz": "Fe'l TO'SIZ keladi: \"You had better go now\". Qisqartmasi \"You'd better go\", inkori \"You'd better not go\". Shakli o'tgan zamonga o'xshaydi, lekin ma'nosi HOZIR va KELASI zamon.",
+        "rule_ru": "Глагол идёт БЕЗ to: «You had better go now». Сокращение — «You'd better go», отрицание — «You'd better not go». Форма похожа на прошедшее время, но значение — настоящее и будущее.",
+        "usage_uz": "should dan KUCHLIROQ: ichida ogohlantirish bor — \"aks holda yomon bo'ladi\". \"You'd better take an umbrella\" (aks holda ho'l bo'lasiz). Shu bois kattalarga yoki rahbarga aytilsa qo'pol eshitilishi mumkin — u yerda should ma'qul. O'zi haqida aytish esa butunlay xavfsiz: \"I'd better go, it's late\" — bu suhbatni xushmuomala tugatishning eng tabiiy yo'li.",
+        "usage_ru": "Сильнее, чем should: внутри есть предупреждение — «иначе будет плохо». «You'd better take an umbrella» (иначе промокнете). Поэтому старшим или руководителю так говорить может звучать грубо — там лучше should. А о себе — совершенно безопасно: «I'd better go, it's late» — самый естественный способ вежливо закончить разговор.",
+        "examples": [
+          {
+            "en": "You had better take an umbrella.",
+            "uz": "Soyabon olsangiz yaxshi bo'ladi.",
+            "ru": "Вам лучше взять зонт."
+          },
+          {
+            "en": "I'd better go, it's late.",
+            "uz": "Ketsam bo'ladi, kech bo'ldi.",
+            "ru": "Мне лучше идти, уже поздно."
+          },
+          {
+            "en": "You'd better not tell him.",
+            "uz": "Unga aytmasangiz yaxshi.",
+            "ru": "Лучше ему не говорить."
+          },
+          {
+            "en": "We'd better leave early tomorrow.",
+            "uz": "Ertaga erta chiqsak yaxshi bo'ladi.",
+            "ru": "Нам лучше выехать завтра рано."
+          }
+        ]
+      },
+      "chunks": [
+        {
+          "text": "I'd better go",
+          "translation_uz": "ketsam bo'ladi",
+          "translation_ru": "мне лучше идти"
+        },
+        {
+          "text": "you'd better not",
+          "translation_uz": "qilmasangiz yaxshi",
+          "translation_ru": "лучше не надо"
+        },
+        {
+          "text": "we'd better hurry",
+          "translation_uz": "shoshilsak yaxshi",
+          "translation_ru": "нам лучше поспешить"
+        }
+      ],
+      "questions": [
+        {
+          "question_text": "Imagine it is late and you are a guest. How do you leave politely?",
+          "canonical_answer": "I'd better go now, it is very late.",
+          "answer_variants": ["I had better leave, thank you for everything."],
+          "elicitation_note": "I'd better go — suhbatni tugatish."
+        },
+        {
+          "question_text": "Imagine your friend has an exam tomorrow morning. Warn him.",
+          "canonical_answer": "You'd better sleep early tonight.",
+          "answer_variants": ["You had better not stay up late."],
+          "elicitation_note": "You'd better (not)."
+        },
+        {
+          "question_text": "Tell me what a tourist had better take to your city in summer.",
+          "canonical_answer": "They had better take water and a hat.",
+          "answer_variants": ["You'd better not come in July, it is too hot."],
+          "elicitation_note": "had better + to'siz fe'l."
+        },
+        {
+          "question_text": "Imagine the sky is dark and I am going out. Warn me.",
+          "canonical_answer": "You had better take an umbrella.",
+          "answer_variants": ["You'd better wait ten minutes."],
+          "elicitation_note": "You had better take."
+        },
+        {
+          "question_text": "Tell me what you had better do this week and keep forgetting.",
+          "canonical_answer": "I had better pay the bills this week.",
+          "answer_variants": ["I'd better call the doctor."],
+          "elicitation_note": "I had better + fe'l."
+        },
+        {
+          "question_text": "Imagine a friend wants to drive after a long day. Tell him.",
+          "canonical_answer": "You'd better not drive tonight, you are too tired.",
+          "answer_variants": ["You had better take a taxi."],
+          "elicitation_note": "You'd better not."
+        },
+        {
+          "question_text": "Tell me what people had better not do in your workplace.",
+          "canonical_answer": "They had better not come late to meetings.",
+          "answer_variants": ["You'd better not use the phone there."],
+          "elicitation_note": "had better not."
+        },
+        {
+          "question_text": "Imagine we have thirty minutes before the bus. What do you say?",
+          "canonical_answer": "We had better hurry, the bus leaves soon.",
+          "answer_variants": ["We'd better take a taxi."],
+          "elicitation_note": "We had better."
+        },
+        {
+          "question_text": "Tell me one thing you had better change about your routine.",
+          "canonical_answer": "I had better stop eating late at night.",
+          "answer_variants": ["I'd better start walking every day."],
+          "elicitation_note": "I had better + o'zgarish."
+        },
+        {
+          "question_text": "Imagine a new colleague asks about the first day. Give him a warning.",
+          "canonical_answer": "You had better arrive ten minutes early on the first day.",
+          "answer_variants": ["You'd better not argue with the manager."],
+          "elicitation_note": "You had better (not)."
+        }
+      ]
+    }
+  ]
+}

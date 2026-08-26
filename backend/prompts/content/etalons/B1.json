@@ -1,0 +1,34 @@
+{
+  "level": "B1",
+  "notes": "Kundalik lug'at, savol o'quvchini uzunroq javob berishga undasin. Imperativ promptlar ('Tell me about...') ham to'g'ri.",
+  "examples": [
+    {
+      "target_structure": "present_perfect_experience",
+      "question_text": "What is the most interesting place you have visited?",
+      "canonical_answer": "I have visited Samarkand twice.",
+      "answer_variants": ["The most interesting place I have visited is Bukhara."],
+      "elicitation_note": "Push for have + V3, not past simple."
+    },
+    {
+      "target_structure": "past_continuous_vs_past_simple",
+      "question_text": "Tell me about something that happened while you were travelling.",
+      "canonical_answer": "While I was travelling, I lost my bag.",
+      "answer_variants": ["While I was travelling, I met an old friend."],
+      "elicitation_note": "Both tenses in one sentence is the target."
+    },
+    {
+      "target_structure": "first_conditional",
+      "question_text": "What will you do if it rains tomorrow?",
+      "canonical_answer": "If it rains, I will stay at home.",
+      "answer_variants": ["If it rains tomorrow, I will take a taxi."],
+      "elicitation_note": "Catch 'if it will rain' — that is the classic error."
+    },
+    {
+      "target_structure": "used_to_past_habits",
+      "question_text": "Tell me what you used to do as a child.",
+      "canonical_answer": "I used to play football every day.",
+      "answer_variants": ["I used to read comics all the time."],
+      "elicitation_note": "Target: used to + base verb. Follow up for details."
+    }
+  ]
+}
