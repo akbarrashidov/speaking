@@ -1,0 +1,90 @@
+# Ishlab chiqarish qatlami — bazaviy `docker-compose.yml` ustiga qo'yiladi:
+#
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+#
+# Yoki soddaroq (deploy.sh shuni qiladi):
+#   export COMPOSE_FILE=docker-compose.yml:docker-compose.prod.yml
+#
+# Nima o'zgaradi:
+#   * nginx 80/443 portlarini egallaydi (dev'dagi 9100 emas);
+#   * Let's Encrypt uchun certbot va sertifikat volume'lari qo'shiladi;
+#   * loglar cheklanadi — 2 vCPU VPS diskini log to'ldirib qo'ymasin;
+#   * postgres/redis tashqariga ochilmaydi (bazada ham port e'lon qilinmagan).
+
+services:
+  postgres:
+    logging: &logging
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  redis:
+    logging: *logging
+
+  web:
+    logging: *logging
+    # Daphne oldida nginx turadi; proxy header'iga ishonish settings.py da
+    # SECURE_PROXY_SSL_HEADER orqali yoqiladi (USE_PROXY_SSL_HEADER=1).
+    environment:
+      POSTGRES_HOST: postgres
+      REDIS_URL: redis://redis:6379/0
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8000/healthz"]
+      interval: 30s
+      timeout: 5s
+      start_period: 90s
+      retries: 3
+
+  worker:
+    logging: *logging
+    # Backend image'dagi HEALTHCHECK `curl :8000/healthz` qiladi — bu daphne
+    # uchun. Celery worker'da HTTP server yo'q, shuning uchun u meros qilib
+    # olgan tekshiruvda abadiy `unhealthy` bo'lib turardi. Broker orqali ping.
+    healthcheck:
+      test: ["CMD-SHELL", "celery -A config inspect ping -d celery@$$HOSTNAME | grep -q pong"]
+      interval: 60s
+      timeout: 20s
+      start_period: 90s
+      retries: 3
+
+  nginx:
+    # NGINX_CONF: HTTPS yoqilmaguncha `prod-http.conf`. `scripts/enable-https.sh`
+    # uni `prod-ssl.conf` ga almashtiradi (o'sha fayl skript tomonidan
+    # shablondan generatsiya qilinadi, git'da saqlanmaydi).
+    volumes:
+      - ./nginx/${NGINX_CONF:-prod-http.conf}:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/snippets:/etc/nginx/snippets:ro
+      - staticfiles:/var/www/static:ro
+      - mediafiles:/var/www/media:ro
+      - certbot-conf:/etc/letsencrypt:ro
+      - certbot-www:/var/www/certbot:ro
+    # `!override` shart: aks holda Compose ro'yxatlarni QO'SHIB yuboradi va
+    # bazaviy fayldagi 9100-port ham ochiq qolib ketadi. Docker o'z iptables
+    # qoidalarini ufw'dan oldin qo'yadi — ya'ni ortiqcha port haqiqatan
+    # tashqaridan ochiq bo'lardi.
+    ports: !override
+      - "80:80"
+      - "443:443"
+    # Sertifikat yangilangandan keyin nginx uni o'zi qayta o'qimaydi —
+    # 6 soatda bir marta reload. Asosiy jarayon PID 1 bo'lib qoladi.
+    command: >
+      /bin/sh -c "while :; do sleep 6h & wait $${!}; nginx -s reload; done & exec nginx -g 'daemon off;'"
+    logging: *logging
+
+  # Sertifikat yangilash sikli. Faqat `tls` profili yoqilganda ishlaydi —
+  # ya'ni HTTPS o'rnatilgandan keyin (.env dagi COMPOSE_PROFILES=tls).
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - certbot-conf:/etc/letsencrypt
+      - certbot-www:/var/www/certbot
+    entrypoint: >
+      /bin/sh -c "trap exit TERM; while :; do certbot renew --webroot -w /var/www/certbot --quiet; sleep 12h & wait $${!}; done"
+    profiles: ["tls"]
+    restart: unless-stopped
+    logging: *logging
+
+volumes:
+  certbot-conf:
+  certbot-www:

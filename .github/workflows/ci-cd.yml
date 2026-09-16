@@ -1,0 +1,134 @@
+# ============================================================================
+#  CI/CD — lint, test, build, va main'ga push bo'lganda serverga deploy.
+# ----------------------------------------------------------------------------
+#  Kerakli GitHub Secrets (Settings -> Secrets and variables -> Actions):
+#    SSH_HOST         167.86.122.56
+#    SSH_USER         deploy
+#    SSH_PRIVATE_KEY  deploy foydalanuvchisining maxfiy kaliti (to'liq matn)
+#    SSH_KNOWN_HOSTS  `ssh-keyscan -H 167.86.122.56` natijasi
+#    APP_DIR          /opt/speaking   (ixtiyoriy, standart shu)
+#
+#  Image'lar serverning o'zida yig'iladi — registry ishlatilmaydi.
+# ============================================================================
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  # Bir vaqtda ikki deploy ketmasin; eski run bekor qilinadi.
+  group: ci-cd-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend-lint:
+    name: Backend lint (ruff)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install ruff==0.9.2
+      - run: ruff check backend
+      - run: ruff format --check backend
+
+  backend-test:
+    name: Backend test (pytest)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/requirements-dev.txt
+      - run: pip install -r backend/requirements-dev.txt
+      # `check` va `makemigrations --check` haqiqiy settings bilan yuradi —
+      # modelga tegib migratsiya yozishni unutish shu yerda tutiladi.
+      - name: Django check
+        working-directory: backend
+        env:
+          USE_SQLITE: "1"
+          USE_LOCMEM_CACHE: "1"
+          USE_INMEMORY_CHANNEL_LAYER: "1"
+          DJANGO_SETTINGS_MODULE: config.settings
+        run: |
+          python manage.py check
+          python manage.py makemigrations --check --dry-run
+      - name: pytest
+        working-directory: backend
+        run: python -m pytest -q
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pytest-report
+          path: backend/report.xml
+          if-no-files-found: ignore
+
+  frontend:
+    name: Frontend lint + build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - working-directory: frontend
+        run: npm ci
+      - working-directory: frontend
+        run: npm run lint
+      - working-directory: frontend
+        run: npm run build
+
+  docker-build:
+    name: Docker image'lar yig'iladi
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Serverda `docker compose build` ishlashiga ishonch — Dockerfile buzilgan
+      # bo'lsa deploy paytida emas, shu yerda bilinadi.
+      - run: docker build -t speaking-backend:ci ./backend
+      - run: docker build -t speaking-frontend:ci ./frontend
+
+  deploy:
+    name: Serverga deploy
+    needs: [backend-lint, backend-test, frontend, docker-build]
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: SSH kaliti sozlanmoqda
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          if [ -n "$SSH_KNOWN_HOSTS" ]; then
+            printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          else
+            # Zaxira yo'l. Xavfsizroq variant — SSH_KNOWN_HOSTS secret'ini
+            # to'ldirish, shunda server kaliti qotirilgan bo'ladi.
+            echo "::warning::SSH_KNOWN_HOSTS bo'sh — server kaliti tekshirilmayapti"
+            ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          fi
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Deploy
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          APP_DIR: ${{ secrets.APP_DIR || '/opt/speaking' }}
+          REF: ${{ github.sha }}
+        run: |
+          ssh -i ~/.ssh/id_deploy -o BatchMode=yes "$SSH_USER@$SSH_HOST" \
+            "cd '$APP_DIR' && DEPLOY_REF='$REF' bash scripts/deploy.sh"

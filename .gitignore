@@ -20,3 +20,12 @@ frontend/dist/
 # env files
 *.env
 !*.env.example
+# Qo'lda olingan .env nusxalari — ichida haqiqiy kalitlar bo'ladi
+.env.backup*
+.env.bak
+.env.local
+
+# Deploy paytida generatsiya qilinadi (scripts/enable-https.sh, domenga bog'liq)
+nginx/prod-ssl.conf
+# Serverdagi baza zaxiralari
+backups/

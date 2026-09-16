@@ -1,0 +1,47 @@
+# HTTPS shabloni. `scripts/enable-https.sh` __DOMAIN__ ni almashtirib
+# `nginx/prod-ssl.conf` ni hosil qiladi (u git'da saqlanmaydi — .gitignore).
+#
+# Shablonni qo'lda tahrirlamang; o'zgartirish kerak bo'lsa shu faylni
+# tahrirlab, enable-https.sh ni qayta ishga tushiring.
+
+upstream django {
+    server web:8000;
+}
+
+server {
+    listen 80 default_server;
+    server_name __DOMAIN__;
+
+    # ACME tekshiruvi HTTP'da qolishi shart — yangilash shu yo'l bilan ketadi.
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+        default_type "text/plain";
+        access_log off;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl default_server;
+    http2 on;
+    server_name __DOMAIN__;
+    client_max_body_size 8m;
+
+    ssl_certificate     /etc/letsencrypt/live/__DOMAIN__/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/__DOMAIN__/privkey.pem;
+    ssl_protocols       TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers off;
+    ssl_session_cache   shared:SSL:10m;
+    ssl_session_timeout 1d;
+    ssl_stapling on;
+    ssl_stapling_verify on;
+
+    include /etc/nginx/snippets/security.conf;
+    # Brauzer shu saytga boshqa hech qachon HTTP bilan bormaydi.
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+
+    include /etc/nginx/snippets/app.conf;
+}

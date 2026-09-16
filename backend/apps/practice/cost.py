@@ -37,7 +37,7 @@ _TOOL_PROMPT_KEYS = ("toolUsePromptTokenCount", "tool_use_prompt_token_count")
 def _first_int(data: dict, keys: tuple[str, ...]) -> int:
     for key in keys:
         value = data.get(key)
-        if isinstance(value, (int, float)):
+        if isinstance(value, int | float):
             return int(value)
     return 0
 
@@ -126,7 +126,7 @@ def merge_usage(previous: dict | None, incoming: dict | None) -> dict:
     merged = dict(previous)
     for key, value in incoming.items():
         old = merged.get(key)
-        if isinstance(value, (int, float)) and isinstance(old, (int, float)):
+        if isinstance(value, int | float) and isinstance(old, int | float):
             merged[key] = max(old, value)
         elif isinstance(value, list) and isinstance(old, list):
             merged[key] = _merge_detail_lists(old, value)

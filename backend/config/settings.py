@@ -44,6 +44,23 @@ DEBUG = env_bool("DJANGO_DEBUG", True)
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
 CSRF_TRUSTED_ORIGINS = [o for o in os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",") if o]
 
+# --- Reverse proxy ortida (prod) -----------------------------------------
+# nginx TLS'ni o'zida tugatadi va daphne'ga oddiy HTTP yuboradi. Shu header
+# bo'lmasa `request.is_secure()` doim False qaytaradi — HTTPS ostida ham CSRF
+# `Origin` tekshiruvi va secure-cookie'lar buziladi.
+# FAQAT nginx ortida yoqing: `USE_PROXY_SSL_HEADER=1`. To'g'ridan-to'g'ri
+# ochiq turgan daphne'da mijoz bu header'ni o'zi yasab yuborishi mumkin.
+if env_bool("USE_PROXY_SSL_HEADER", False):
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+# HTTPS o'rnatilgandan keyin yoqiladi. HTTP rejimida yoqilsa brauzer cookie'ni
+# umuman yubormaydi va admin panelga kirib bo'lmaydi.
+SECURE_COOKIES = env_bool("SECURE_COOKIES", False)
+SESSION_COOKIE_SECURE = SECURE_COOKIES
+CSRF_COOKIE_SECURE = SECURE_COOKIES
+SESSION_COOKIE_HTTPONLY = True
+SECURE_SSL_REDIRECT = False  # nginx allaqachon 301 qiladi — ikki marta kerak emas
+
 INSTALLED_APPS = [
     "daphne",
     "django.contrib.admin",
